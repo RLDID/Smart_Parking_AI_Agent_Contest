@@ -1,0 +1,223 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "action": {
+      "enum": [
+        "claim_alarm",
+        "clear_alarm",
+        "alarm_feedback",
+        "set_entry_policy",
+        "command_gate",
+        "gate_feedback",
+        "tick",
+        "broadcast",
+        "broadcast_feedback",
+        "cancel_gate",
+        "cancel_broadcast"
+      ],
+      "title": "Action",
+      "type": "string"
+    },
+    "operation_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Operation Id",
+      "type": "string"
+    },
+    "zone_id": {
+      "anyOf": [
+        {
+          "maxLength": 128,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Zone Id"
+    },
+    "incident_id": {
+      "anyOf": [
+        {
+          "maxLength": 128,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Incident Id"
+    },
+    "evidence_version": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Evidence Version"
+    },
+    "current_observation": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Current Observation"
+    },
+    "expected_version": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Expected Version"
+    },
+    "gate_id": {
+      "anyOf": [
+        {
+          "maxLength": 128,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Gate Id"
+    },
+    "target": {
+      "anyOf": [
+        {
+          "enum": [
+            "open",
+            "closed",
+            "allow",
+            "deny"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Target"
+    },
+    "obstacle_detected": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Obstacle Detected"
+    },
+    "outbound_clear": {
+      "anyOf": [
+        {
+          "type": "boolean"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Outbound Clear"
+    },
+    "broadcast_operation_id": {
+      "anyOf": [
+        {
+          "maxLength": 128,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Broadcast Operation Id"
+    },
+    "message_id": {
+      "anyOf": [
+        {
+          "maxLength": 128,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Message Id"
+    },
+    "channel": {
+      "anyOf": [
+        {
+          "enum": [
+            "visual",
+            "audio",
+            "receipt",
+            "simulated_playback",
+            "browser_playback"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Channel"
+    },
+    "feedback": {
+      "anyOf": [
+        {
+          "enum": [
+            "on",
+            "off",
+            "failed",
+            "unknown",
+            "accepted",
+            "played"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Feedback"
+    }
+  },
+  "required": [
+    "action",
+    "operation_id"
+  ],
+  "title": "DeviceCommand",
+  "type": "object"
+}

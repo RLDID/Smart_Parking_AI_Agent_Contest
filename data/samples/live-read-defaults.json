@@ -1,0 +1,37 @@
+{
+  "schema_version": "live-read-v1",
+  "pricing_checked_on": "2026-10-01",
+  "pricing_notes": "Adopted primary/fallback models. Standard USD per million input/output: Luna 0.10/0.50, Gemini 3.8 Flash 0.75/3.75 through 2026-12-31. Recheck before that pricing expires. KRW estimate uses 2000 KRW/USD x 1.20 contingency, not a live rate or invoice; no cache discount. Both providers share cost tracking including unresolved reservations. Monetary caps are optional and disabled by default. TTS and other applications are not collected by this ledger; provider credit is checked separately.",
+  "pricing_sources": [
+    "https://developers.openai.com/api/docs/models/gpt-6-luna",
+    "https://ai.google.dev/gemini-api/docs/pricing"
+  ],
+  "primary_provider": "openai",
+  "fallback_provider": "gemini",
+  "limits": {
+    "total_krw": null,
+    "daily_krw": null
+  },
+  "providers": {
+    "openai": {
+      "pricing": {
+        "provider": "openai",
+        "model": "gpt-6-luna",
+        "input_krw_per_million": "240",
+        "output_krw_per_million": "1200"
+      },
+      "max_output_tokens": 1024,
+      "timeout_seconds": 8
+    },
+    "gemini": {
+      "pricing": {
+        "provider": "gemini",
+        "model": "gemini-3.8-flash",
+        "input_krw_per_million": "1800",
+        "output_krw_per_million": "9000"
+      },
+      "max_output_tokens": 2048,
+      "timeout_seconds": 10
+    }
+  }
+}

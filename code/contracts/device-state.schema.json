@@ -1,0 +1,426 @@
+{
+  "$defs": {
+    "AlarmClaim": {
+      "additionalProperties": false,
+      "properties": {
+        "incident_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Incident Id",
+          "type": "string"
+        },
+        "evidence_version": {
+          "minimum": 0,
+          "title": "Evidence Version",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "incident_id",
+        "evidence_version"
+      ],
+      "title": "AlarmClaim",
+      "type": "object"
+    },
+    "AlarmZoneState": {
+      "additionalProperties": false,
+      "properties": {
+        "zone_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Zone Id",
+          "type": "string"
+        },
+        "resource_version": {
+          "minimum": 0,
+          "title": "Resource Version",
+          "type": "integer"
+        },
+        "claims": {
+          "items": {
+            "$ref": "#/$defs/AlarmClaim"
+          },
+          "maxItems": 128,
+          "title": "Claims",
+          "type": "array"
+        },
+        "desired_active": {
+          "title": "Desired Active",
+          "type": "boolean"
+        },
+        "visual": {
+          "enum": [
+            "off",
+            "pending",
+            "on",
+            "failed",
+            "unknown"
+          ],
+          "title": "Visual",
+          "type": "string"
+        },
+        "audio": {
+          "enum": [
+            "off",
+            "pending",
+            "on",
+            "failed",
+            "unknown"
+          ],
+          "title": "Audio",
+          "type": "string"
+        }
+      },
+      "required": [
+        "zone_id",
+        "resource_version",
+        "claims",
+        "desired_active",
+        "visual",
+        "audio"
+      ],
+      "title": "AlarmZoneState",
+      "type": "object"
+    },
+    "BroadcastRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "operation_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Operation Id",
+          "type": "string"
+        },
+        "zone_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Zone Id",
+          "type": "string"
+        },
+        "message_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Message Id",
+          "type": "string"
+        },
+        "requested_at": {
+          "title": "Requested At",
+          "type": "string"
+        },
+        "receipt": {
+          "enum": [
+            "accepted",
+            "failed",
+            "unknown"
+          ],
+          "title": "Receipt",
+          "type": "string"
+        },
+        "simulated_playback": {
+          "enum": [
+            "pending",
+            "played",
+            "failed",
+            "unknown",
+            "cancelled"
+          ],
+          "title": "Simulated Playback",
+          "type": "string"
+        },
+        "browser_playback": {
+          "enum": [
+            "not_requested",
+            "pending",
+            "played",
+            "failed",
+            "unknown"
+          ],
+          "title": "Browser Playback",
+          "type": "string"
+        }
+      },
+      "required": [
+        "operation_id",
+        "zone_id",
+        "message_id",
+        "requested_at",
+        "receipt",
+        "simulated_playback",
+        "browser_playback"
+      ],
+      "title": "BroadcastRecord",
+      "type": "object"
+    },
+    "GateState": {
+      "additionalProperties": false,
+      "properties": {
+        "gate_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Gate Id",
+          "type": "string"
+        },
+        "direction": {
+          "enum": [
+            "entry",
+            "exit"
+          ],
+          "title": "Direction",
+          "type": "string"
+        },
+        "resource_version": {
+          "minimum": 0,
+          "title": "Resource Version",
+          "type": "integer"
+        },
+        "entry_policy": {
+          "default": "allow",
+          "enum": [
+            "allow",
+            "deny"
+          ],
+          "title": "Entry Policy",
+          "type": "string"
+        },
+        "physical_state": {
+          "default": "open",
+          "enum": [
+            "open",
+            "closed",
+            "opening",
+            "closing",
+            "stopped",
+            "unknown"
+          ],
+          "title": "Physical State",
+          "type": "string"
+        },
+        "obstacle_detected": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Obstacle Detected"
+        },
+        "active_operation_id": {
+          "anyOf": [
+            {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Active Operation Id"
+        },
+        "transition_target": {
+          "anyOf": [
+            {
+              "enum": [
+                "open",
+                "closed"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Transition Target"
+        },
+        "transition_due_ms": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Transition Due Ms"
+        },
+        "last_feedback": {
+          "default": "none",
+          "enum": [
+            "none",
+            "applied",
+            "failed",
+            "unknown",
+            "safety_stop"
+          ],
+          "title": "Last Feedback",
+          "type": "string"
+        }
+      },
+      "required": [
+        "gate_id",
+        "direction",
+        "resource_version"
+      ],
+      "title": "GateState",
+      "type": "object"
+    },
+    "OperationRecord": {
+      "additionalProperties": false,
+      "properties": {
+        "operation_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Operation Id",
+          "type": "string"
+        },
+        "payload_digest": {
+          "pattern": "^[0-9a-f]{64}$",
+          "title": "Payload Digest",
+          "type": "string"
+        },
+        "outcome": {
+          "enum": [
+            "accepted",
+            "held",
+            "rejected",
+            "unknown"
+          ],
+          "title": "Outcome",
+          "type": "string"
+        },
+        "reason": {
+          "maxLength": 128,
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "operation_id",
+        "payload_digest",
+        "outcome",
+        "reason"
+      ],
+      "title": "OperationRecord",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "kind": {
+      "const": "synthetic_device_state",
+      "default": "synthetic_device_state",
+      "title": "Kind",
+      "type": "string"
+    },
+    "facility_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Facility Id",
+      "type": "string"
+    },
+    "map_version": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Map Version",
+      "type": "string"
+    },
+    "map_digest": {
+      "pattern": "^[0-9a-f]{64}$",
+      "title": "Map Digest",
+      "type": "string"
+    },
+    "version": {
+      "minimum": 0,
+      "title": "Version",
+      "type": "integer"
+    },
+    "now_utc": {
+      "title": "Now Utc",
+      "type": "string"
+    },
+    "sim_time_ms": {
+      "maximum": 9007199254740991,
+      "minimum": 0,
+      "title": "Sim Time Ms",
+      "type": "integer"
+    },
+    "broadcast_cooldown_s": {
+      "maximum": 3600,
+      "minimum": 0,
+      "title": "Broadcast Cooldown S",
+      "type": "integer"
+    },
+    "gate_transition_ms": {
+      "maximum": 30000,
+      "minimum": 1,
+      "title": "Gate Transition Ms",
+      "type": "integer"
+    },
+    "allowed_messages": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 32,
+      "minItems": 1,
+      "title": "Allowed Messages",
+      "type": "array"
+    },
+    "alarms": {
+      "items": {
+        "$ref": "#/$defs/AlarmZoneState"
+      },
+      "maxItems": 32,
+      "title": "Alarms",
+      "type": "array"
+    },
+    "gates": {
+      "items": {
+        "$ref": "#/$defs/GateState"
+      },
+      "maxItems": 8,
+      "minItems": 2,
+      "title": "Gates",
+      "type": "array"
+    },
+    "broadcasts": {
+      "items": {
+        "$ref": "#/$defs/BroadcastRecord"
+      },
+      "maxItems": 256,
+      "title": "Broadcasts",
+      "type": "array"
+    },
+    "operations": {
+      "items": {
+        "$ref": "#/$defs/OperationRecord"
+      },
+      "maxItems": 512,
+      "title": "Operations",
+      "type": "array"
+    }
+  },
+  "required": [
+    "facility_id",
+    "map_version",
+    "map_digest",
+    "version",
+    "now_utc",
+    "sim_time_ms",
+    "broadcast_cooldown_s",
+    "gate_transition_ms",
+    "allowed_messages",
+    "alarms",
+    "gates",
+    "broadcasts",
+    "operations"
+  ],
+  "title": "DeviceState",
+  "type": "object"
+}

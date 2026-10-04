@@ -1,0 +1,208 @@
+{
+  "$defs": {
+    "KnowledgeReference": {
+      "additionalProperties": false,
+      "properties": {
+        "reference_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Reference Id",
+          "type": "string"
+        },
+        "document_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Document Id",
+          "type": "string"
+        },
+        "document_version": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Document Version",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "section": {
+          "title": "Section",
+          "type": "string"
+        },
+        "topic": {
+          "enum": [
+            "parking_order",
+            "entry_exit",
+            "announcement",
+            "user_guidance"
+          ],
+          "title": "Topic",
+          "type": "string"
+        },
+        "procedure_group_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Procedure Group Id",
+          "type": "string"
+        },
+        "excerpt": {
+          "title": "Excerpt",
+          "type": "string"
+        },
+        "content_digest": {
+          "title": "Content Digest",
+          "type": "string"
+        },
+        "chunk_digest": {
+          "title": "Chunk Digest",
+          "type": "string"
+        },
+        "effective_at": {
+          "title": "Effective At",
+          "type": "string"
+        },
+        "retired_at": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Retired At"
+        }
+      },
+      "required": [
+        "reference_id",
+        "document_id",
+        "document_version",
+        "title",
+        "section",
+        "topic",
+        "procedure_group_id",
+        "excerpt",
+        "content_digest",
+        "chunk_digest",
+        "effective_at"
+      ],
+      "title": "KnowledgeReference",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "0.1-draft",
+      "default": "0.1-draft",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "retrieval_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Retrieval Id",
+      "type": "string"
+    },
+    "facility_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Facility Id",
+      "type": "string"
+    },
+    "run_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Run Id",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "matched",
+        "no_match",
+        "conflict",
+        "unavailable"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "policy_version": {
+      "anyOf": [
+        {
+          "minimum": 1,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Policy Version"
+    },
+    "knowledge_release_id": {
+      "anyOf": [
+        {
+          "maxLength": 128,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Knowledge Release Id"
+    },
+    "evaluated_at": {
+      "title": "Evaluated At",
+      "type": "string"
+    },
+    "retrieved_at": {
+      "title": "Retrieved At",
+      "type": "string"
+    },
+    "index_version": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Index Version"
+    },
+    "references": {
+      "items": {
+        "$ref": "#/$defs/KnowledgeReference"
+      },
+      "maxItems": 100,
+      "title": "References",
+      "type": "array"
+    },
+    "reason_code": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Reason Code"
+    }
+  },
+  "required": [
+    "retrieval_id",
+    "facility_id",
+    "run_id",
+    "status",
+    "evaluated_at",
+    "retrieved_at"
+  ],
+  "title": "KnowledgeResult",
+  "type": "object"
+}

@@ -1,0 +1,7 @@
+# Local simulator foundation; exact tested transitive versions: requirements.lock.txt
+fastapi==0.142.2
+uvicorn==0.54.0
+pydantic==2.13.5
+shapely==2.1.2
+httpx==0.28.1
+pytest==9.1.1

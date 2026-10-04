@@ -1,0 +1,5457 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Parking foundation — local development",
+    "version": "0.1.0"
+  },
+  "paths": {
+    "/api/v1/facilities/{facility_id}/relationships": {
+      "get": {
+        "summary": "Relationships",
+        "operationId": "relationships_api_v1_facilities__facility_id__relationships_get",
+        "parameters": [
+          {
+            "name": "facility_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Facility Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/facilities/{facility_id}/relationships/customers": {
+      "post": {
+        "summary": "Create Customer",
+        "operationId": "create_customer_api_v1_facilities__facility_id__relationships_customers_post",
+        "parameters": [
+          {
+            "name": "facility_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Facility Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/facilities/{facility_id}/relationships/customers/{user_id}": {
+      "patch": {
+        "summary": "Change Customer",
+        "operationId": "change_customer_api_v1_facilities__facility_id__relationships_customers__user_id__patch",
+        "parameters": [
+          {
+            "name": "facility_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Facility Id"
+            }
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "User Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CustomerChange"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/facilities/{facility_id}/relationships/vehicles": {
+      "post": {
+        "summary": "Create Vehicle",
+        "operationId": "create_vehicle_api_v1_facilities__facility_id__relationships_vehicles_post",
+        "parameters": [
+          {
+            "name": "facility_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Facility Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VehicleCreate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/facilities/{facility_id}/relationships/vehicles/{vehicle_id}": {
+      "patch": {
+        "summary": "Change Vehicle",
+        "operationId": "change_vehicle_api_v1_facilities__facility_id__relationships_vehicles__vehicle_id__patch",
+        "parameters": [
+          {
+            "name": "facility_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Facility Id"
+            }
+          },
+          {
+            "name": "vehicle_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Vehicle Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VehicleChange"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/facilities/{facility_id}/relationships/vehicles/{vehicle_id}/customer": {
+      "put": {
+        "summary": "Change Vehicle User",
+        "operationId": "change_vehicle_user_api_v1_facilities__facility_id__relationships_vehicles__vehicle_id__customer_put",
+        "parameters": [
+          {
+            "name": "facility_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Facility Id"
+            }
+          },
+          {
+            "name": "vehicle_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Vehicle Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VehicleUserChange"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/facilities/{facility_id}/relationships/vehicle-objects/{object_id}": {
+      "put": {
+        "summary": "Change Vehicle Object",
+        "operationId": "change_vehicle_object_api_v1_facilities__facility_id__relationships_vehicle_objects__object_id__put",
+        "parameters": [
+          {
+            "name": "facility_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Facility Id"
+            }
+          },
+          {
+            "name": "object_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Object Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ObjectMappingChange"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/facilities/{facility_id}/relationships/person-objects/{object_id}": {
+      "put": {
+        "summary": "Change Person Object",
+        "operationId": "change_person_object_api_v1_facilities__facility_id__relationships_person_objects__object_id__put",
+        "parameters": [
+          {
+            "name": "facility_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Facility Id"
+            }
+          },
+          {
+            "name": "object_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Object Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PersonMappingChange"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/devtools/relationships": {
+      "get": {
+        "summary": "Relationship Page",
+        "operationId": "relationship_page_devtools_relationships_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/devtools/relationships.js": {
+      "get": {
+        "summary": "Relationship Script",
+        "operationId": "relationship_script_devtools_relationships_js_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/test/agent/operations": {
+      "post": {
+        "summary": "Autonomous Control",
+        "operationId": "autonomous_control_api_v1_test_agent_operations_post",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AutonomousControl"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Autonomous Status",
+        "operationId": "autonomous_status_api_v1_test_agent_operations_get",
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Run Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/test/agent/operations/jobs": {
+      "get": {
+        "summary": "Autonomous Jobs",
+        "operationId": "autonomous_jobs_api_v1_test_agent_operations_jobs_get",
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Run Id"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 20,
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/commands/{command_id}/clarify": {
+      "post": {
+        "summary": "Clarify Command",
+        "operationId": "clarify_command_api_v1_commands__command_id__clarify_post",
+        "parameters": [
+          {
+            "name": "command_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Command Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommandClarification"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/commands/{command_id}/plan": {
+      "get": {
+        "summary": "Command Plan",
+        "operationId": "command_plan_api_v1_commands__command_id__plan_get",
+        "parameters": [
+          {
+            "name": "command_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Command Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/commands/{command_id}/confirm": {
+      "post": {
+        "summary": "Confirm Command",
+        "operationId": "confirm_command_api_v1_commands__command_id__confirm_post",
+        "parameters": [
+          {
+            "name": "command_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Command Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CancelInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/facilities/{facility_id}/commands": {
+      "get": {
+        "summary": "Commands",
+        "operationId": "commands_api_v1_facilities__facility_id__commands_get",
+        "parameters": [
+          {
+            "name": "facility_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Facility Id"
+            }
+          },
+          {
+            "name": "run_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Run Id"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommandsHistory"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Command",
+        "operationId": "command_api_v1_facilities__facility_id__commands_post",
+        "parameters": [
+          {
+            "name": "facility_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Facility Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CommandInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/facilities/{facility_id}/executions": {
+      "get": {
+        "summary": "Executions",
+        "operationId": "executions_api_v1_facilities__facility_id__executions_get",
+        "parameters": [
+          {
+            "name": "facility_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Facility Id"
+            }
+          },
+          {
+            "name": "run_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Run Id"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ExecutionsHistory"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/incidents/{incident_id}/timeline": {
+      "get": {
+        "summary": "Timeline",
+        "operationId": "timeline_api_v1_incidents__incident_id__timeline_get",
+        "parameters": [
+          {
+            "name": "incident_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Incident Id"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "maximum": 100,
+              "minimum": 1,
+              "default": 50,
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IncidentTimeline"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/commands/{command_id}/progress": {
+      "get": {
+        "summary": "Progress",
+        "operationId": "progress_api_v1_commands__command_id__progress_get",
+        "parameters": [
+          {
+            "name": "command_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Command Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CommandProgress"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/me/vehicle-locations": {
+      "get": {
+        "summary": "Vehicle Locations",
+        "operationId": "vehicle_locations_api_v1_me_vehicle_locations_get",
+        "parameters": [
+          {
+            "name": "facility_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Facility Id"
+            }
+          },
+          {
+            "name": "run_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Run Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VehicleLocations"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/me/parking-map": {
+      "get": {
+        "summary": "Parking Map",
+        "operationId": "parking_map_api_v1_me_parking_map_get",
+        "parameters": [
+          {
+            "name": "facility_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Facility Id"
+            }
+          },
+          {
+            "name": "map_version",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Map Version"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OwnParkingMap"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/test/runs/{run_id}/synthetic-users": {
+      "get": {
+        "summary": "Synthetic Users",
+        "operationId": "synthetic_users_api_v1_test_runs__run_id__synthetic_users_get",
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Run Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Configure Synthetic Users",
+        "operationId": "configure_synthetic_users_api_v1_test_runs__run_id__synthetic_users_put",
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Run Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SyntheticUserInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/facilities/{facility_id}/devices": {
+      "get": {
+        "summary": "Devices",
+        "operationId": "devices_api_v1_facilities__facility_id__devices_get",
+        "parameters": [
+          {
+            "name": "facility_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Facility Id"
+            }
+          },
+          {
+            "name": "run_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Run Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/test/runs/{run_id}/device-faults": {
+      "put": {
+        "summary": "Device Fault",
+        "operationId": "device_fault_api_v1_test_runs__run_id__device_faults_put",
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Run Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeviceFaultInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/test/runs/{run_id}/s2-reaction": {
+      "put": {
+        "summary": "S2 Reaction",
+        "operationId": "s2_reaction_api_v1_test_runs__run_id__s2_reaction_put",
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Run Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/S2ReactionInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health/live": {
+      "get": {
+        "summary": "Live",
+        "operationId": "live_health_live_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/health/ready": {
+      "get": {
+        "summary": "Ready",
+        "operationId": "ready_health_ready_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/auth/session": {
+      "post": {
+        "summary": "Login",
+        "operationId": "login_api_v1_auth_session_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Logout",
+        "operationId": "logout_api_v1_auth_session_delete",
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          }
+        }
+      }
+    },
+    "/api/v1/me": {
+      "get": {
+        "summary": "Me",
+        "operationId": "me_api_v1_me_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/facilities/{facility_id}/map": {
+      "get": {
+        "summary": "Map View",
+        "operationId": "map_view_api_v1_facilities__facility_id__map_get",
+        "parameters": [
+          {
+            "name": "facility_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Facility Id"
+            }
+          },
+          {
+            "name": "map_version",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Map Version"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/me/vehicles": {
+      "get": {
+        "summary": "My Vehicles",
+        "operationId": "my_vehicles_api_v1_me_vehicles_get",
+        "parameters": [
+          {
+            "name": "facility_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Facility Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/VehicleList"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/facilities/{facility_id}/state": {
+      "get": {
+        "summary": "State",
+        "operationId": "state_api_v1_facilities__facility_id__state_get",
+        "parameters": [
+          {
+            "name": "facility_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Facility Id"
+            }
+          },
+          {
+            "name": "run_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Run Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "anyOf": [
+                    {
+                      "$ref": "#/components/schemas/DriverStateView"
+                    },
+                    {
+                      "$ref": "#/components/schemas/StateView"
+                    }
+                  ],
+                  "title": "Response State Api V1 Facilities  Facility Id  State Get"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/facilities/{facility_id}/spatial-analysis": {
+      "get": {
+        "summary": "Spatial Analysis",
+        "operationId": "spatial_analysis_api_v1_facilities__facility_id__spatial_analysis_get",
+        "parameters": [
+          {
+            "name": "facility_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Facility Id"
+            }
+          },
+          {
+            "name": "run_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Run Id"
+            }
+          },
+          {
+            "name": "zone_id",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "default": "aisle-west",
+              "title": "Zone Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SpatialAnalysis"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/test/runs": {
+      "post": {
+        "summary": "Create Run",
+        "operationId": "create_run_api_v1_test_runs_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRun"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RunView"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/test/runs/{run_id}/control": {
+      "post": {
+        "summary": "Control",
+        "operationId": "control_api_v1_test_runs__run_id__control_post",
+        "parameters": [
+          {
+            "name": "run_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Run Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Control"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RunView"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/test/s1a/manual": {
+      "post": {
+        "summary": "Manual S1A",
+        "operationId": "manual_s1a_api_v1_test_s1a_manual_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ManualS1"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/test/agent/queries": {
+      "post": {
+        "summary": "Mock Agent Query",
+        "operationId": "mock_agent_query_api_v1_test_agent_queries_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/AgentQuery"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/test/agent/config": {
+      "get": {
+        "summary": "Agent Configuration",
+        "operationId": "agent_configuration_api_v1_test_agent_config_get",
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/test/agent/live-queries": {
+      "post": {
+        "summary": "Live Agent Query",
+        "operationId": "live_agent_query_api_v1_test_agent_live_queries_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LiveAgentQuery"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/facilities/{facility_id}/events": {
+      "get": {
+        "summary": "Events",
+        "operationId": "events_api_v1_facilities__facility_id__events_get",
+        "parameters": [
+          {
+            "name": "facility_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Facility Id"
+            }
+          },
+          {
+            "name": "run_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Run Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/notifications": {
+      "get": {
+        "summary": "Notifications",
+        "operationId": "notifications_api_v1_notifications_get",
+        "parameters": [
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "title": "Cursor"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 50,
+              "title": "Limit"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/notifications/{notification_id}/receipts": {
+      "post": {
+        "summary": "Receipt",
+        "operationId": "receipt_api_v1_notifications__notification_id__receipts_post",
+        "parameters": [
+          {
+            "name": "notification_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Notification Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ReceiptInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/notifications/{notification_id}/responses": {
+      "post": {
+        "summary": "Response",
+        "operationId": "response_api_v1_notifications__notification_id__responses_post",
+        "parameters": [
+          {
+            "name": "notification_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Notification Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResponseInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/facilities/{facility_id}/incidents": {
+      "get": {
+        "summary": "Incidents",
+        "operationId": "incidents_api_v1_facilities__facility_id__incidents_get",
+        "parameters": [
+          {
+            "name": "facility_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Facility Id"
+            }
+          },
+          {
+            "name": "run_id",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Run Id"
+            }
+          },
+          {
+            "name": "cursor",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 0,
+              "title": "Cursor"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "default": 50,
+              "title": "Limit"
+            }
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Status"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/incidents/{incident_id}": {
+      "get": {
+        "summary": "Incident",
+        "operationId": "incident_api_v1_incidents__incident_id__get",
+        "parameters": [
+          {
+            "name": "incident_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Incident Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/commands/{command_id}": {
+      "get": {
+        "summary": "Get Command",
+        "operationId": "get_command_api_v1_commands__command_id__get",
+        "parameters": [
+          {
+            "name": "command_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Command Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/executions/{execution_id}": {
+      "get": {
+        "summary": "Get Execution",
+        "operationId": "get_execution_api_v1_executions__execution_id__get",
+        "parameters": [
+          {
+            "name": "execution_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Execution Id"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/commands/{command_id}/cancel": {
+      "post": {
+        "summary": "Cancel Command",
+        "operationId": "cancel_command_api_v1_commands__command_id__cancel_post",
+        "parameters": [
+          {
+            "name": "command_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Command Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CancelInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/executions/{execution_id}/cancel": {
+      "post": {
+        "summary": "Cancel Execution",
+        "operationId": "cancel_execution_api_v1_executions__execution_id__cancel_post",
+        "parameters": [
+          {
+            "name": "execution_id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "title": "Execution Id"
+            }
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CancelInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Response",
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            }
+          },
+          "422": {
+            "description": "Validation Error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ActionParams": {
+        "properties": {
+          "request_vehicle_move": {
+            "anyOf": [
+              {
+                "type": "string",
+                "const": "obj-car-02"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Request Vehicle Move"
+          },
+          "request_vehicle_departure": {
+            "anyOf": [
+              {
+                "type": "string",
+                "const": "obj-car-01"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Request Vehicle Departure"
+          },
+          "request_portal_attempt": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "obj-car-s3-u",
+                  "obj-car-s3-w"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Request Portal Attempt"
+          },
+          "observation_mode": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "normal",
+                  "occluded_vehicle",
+                  "missing_vehicle",
+                  "occluded_pedestrian",
+                  "missing_pedestrian",
+                  "delayed",
+                  "unavailable"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observation Mode"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "ActionParams"
+      },
+      "AgentQuery": {
+        "properties": {
+          "run_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Run Id"
+          },
+          "goal": {
+            "type": "string",
+            "enum": [
+              "current_state",
+              "my_vehicle",
+              "regulation"
+            ],
+            "title": "Goal"
+          },
+          "query": {
+            "type": "string",
+            "maxLength": 500,
+            "title": "Query",
+            "default": ""
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "run_id",
+          "goal"
+        ],
+        "title": "AgentQuery"
+      },
+      "AnalysisQuality": {
+        "properties": {
+          "freshness": {
+            "type": "string",
+            "enum": [
+              "fresh",
+              "stale",
+              "unknown"
+            ],
+            "title": "Freshness"
+          },
+          "run_status": {
+            "type": "string",
+            "enum": [
+              "running",
+              "paused",
+              "stopped",
+              "replaying"
+            ],
+            "title": "Run Status"
+          },
+          "observation_age_sim_ms": {
+            "type": "integer",
+            "title": "Observation Age Sim Ms"
+          },
+          "received_age_wall_ms": {
+            "type": "integer",
+            "title": "Received Age Wall Ms"
+          },
+          "reasons": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Reasons"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "freshness",
+          "run_status",
+          "observation_age_sim_ms",
+          "received_age_wall_ms",
+          "reasons"
+        ],
+        "title": "AnalysisQuality"
+      },
+      "AutonomousControl": {
+        "properties": {
+          "run_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Run Id"
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "start",
+              "stop",
+              "process"
+            ],
+            "title": "Action"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "mock",
+              "live"
+            ],
+            "title": "Mode",
+            "default": "mock"
+          },
+          "scenario": {
+            "anyOf": [
+              {
+                "type": "string",
+                "enum": [
+                  "s1a",
+                  "s1b",
+                  "s1c",
+                  "s2",
+                  "s3"
+                ]
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Scenario"
+          },
+          "command_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Command Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "run_id",
+          "action"
+        ],
+        "title": "AutonomousControl"
+      },
+      "CancelInput": {
+        "properties": {
+          "expected_resource_version": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Expected Resource Version"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 500
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "expected_resource_version"
+        ],
+        "title": "CancelInput"
+      },
+      "CommandClarification": {
+        "properties": {
+          "expected_resource_version": {
+            "type": "integer",
+            "minimum": 1.0,
+            "title": "Expected Resource Version"
+          },
+          "goal": {
+            "type": "string",
+            "enum": [
+              "closing",
+              "zone_notice"
+            ],
+            "title": "Goal"
+          },
+          "zone_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "const": "announcement-a"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Zone Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "expected_resource_version",
+          "goal"
+        ],
+        "title": "CommandClarification"
+      },
+      "CommandInput": {
+        "properties": {
+          "run_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Run Id"
+          },
+          "purpose": {
+            "type": "string",
+            "enum": [
+              "query",
+              "operational_goal",
+              "own_vehicle_query",
+              "report_exit_blocked"
+            ],
+            "title": "Purpose"
+          },
+          "text": {
+            "type": "string",
+            "maxLength": 2000,
+            "minLength": 1,
+            "title": "Text"
+          },
+          "target_vehicle_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Target Vehicle Id"
+          },
+          "based_on_state_version": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Based On State Version"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "run_id",
+          "purpose",
+          "text",
+          "based_on_state_version"
+        ],
+        "title": "CommandInput"
+      },
+      "CommandProgress": {
+        "properties": {
+          "as_of_utc": {
+            "type": "string",
+            "title": "As Of Utc"
+          },
+          "command": {
+            "$ref": "#/components/schemas/HistoryCommand"
+          },
+          "plans": {
+            "items": {
+              "$ref": "#/components/schemas/PlanProgress"
+            },
+            "type": "array",
+            "title": "Plans"
+          },
+          "preservation_limits": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Preservation Limits"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "as_of_utc",
+          "command",
+          "plans",
+          "preservation_limits"
+        ],
+        "title": "CommandProgress"
+      },
+      "CommandsHistory": {
+        "properties": {
+          "as_of_utc": {
+            "type": "string",
+            "title": "As Of Utc"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          },
+          "consistency": {
+            "type": "string",
+            "const": "immutable_projection_current_authority",
+            "title": "Consistency",
+            "default": "immutable_projection_current_authority"
+          },
+          "preservation_limits": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Preservation Limits"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/HistoryCommand"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "as_of_utc",
+          "items"
+        ],
+        "title": "CommandsHistory"
+      },
+      "Control": {
+        "properties": {
+          "action": {
+            "type": "string",
+            "enum": [
+              "start",
+              "pause",
+              "step",
+              "reset",
+              "replay"
+            ],
+            "title": "Action"
+          },
+          "action_params": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ActionParams"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "action"
+        ],
+        "title": "Control"
+      },
+      "CreateRun": {
+        "properties": {
+          "facility_id": {
+            "type": "string",
+            "const": "fac-demo-01",
+            "title": "Facility Id"
+          },
+          "fixture_ref": {
+            "type": "string",
+            "enum": [
+              "s1a-foundation-v1",
+              "s1b-blocked-v1",
+              "s1b-clear-v1",
+              "s1c-overlap-v1",
+              "s1c-contained-v1",
+              "s2-crossing-v1",
+              "s2-offset-v1",
+              "s2-occluded-v1",
+              "s3-closing-v1",
+              "s3-gate-obstacle-v1"
+            ],
+            "title": "Fixture Ref"
+          },
+          "seed": {
+            "type": "integer",
+            "maximum": 2147483647.0,
+            "minimum": 0.0,
+            "title": "Seed"
+          },
+          "config_ref": {
+            "type": "string",
+            "enum": [
+              "foundation-v1",
+              "sim0-v1"
+            ],
+            "title": "Config Ref"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "facility_id",
+          "fixture_ref",
+          "seed",
+          "config_ref"
+        ],
+        "title": "CreateRun"
+      },
+      "CustomerChange": {
+        "properties": {
+          "expected_version": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected Version"
+          },
+          "reason": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Reason"
+          },
+          "display_alias": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Alias"
+          },
+          "active": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Active"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "expected_version",
+          "reason"
+        ],
+        "title": "CustomerChange"
+      },
+      "CustomerCreate": {
+        "properties": {
+          "display_alias": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 1,
+            "title": "Display Alias"
+          },
+          "reason": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Reason"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "display_alias",
+          "reason"
+        ],
+        "title": "CustomerCreate"
+      },
+      "DeviceFaultInput": {
+        "properties": {
+          "expected_state_version": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected State Version"
+          },
+          "channel": {
+            "type": "string",
+            "enum": [
+              "visual",
+              "audio",
+              "simulated_playback",
+              "gate"
+            ],
+            "title": "Channel"
+          },
+          "failed": {
+            "type": "boolean",
+            "title": "Failed"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "expected_state_version",
+          "channel",
+          "failed"
+        ],
+        "title": "DeviceFaultInput"
+      },
+      "DriverStateView": {
+        "properties": {
+          "snapshot": {
+            "$ref": "#/components/schemas/Observation"
+          },
+          "run_status": {
+            "type": "string",
+            "enum": [
+              "running",
+              "paused",
+              "stopped",
+              "replaying"
+            ],
+            "title": "Run Status"
+          },
+          "recovery_required": {
+            "type": "boolean",
+            "title": "Recovery Required"
+          },
+          "applied_state_version": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Applied State Version"
+          },
+          "applied_sim_time_ms": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Applied Sim Time Ms"
+          },
+          "view_scope": {
+            "type": "string",
+            "const": "own_vehicles",
+            "title": "View Scope"
+          },
+          "registered_vehicle_ids": {
+            "items": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1
+            },
+            "type": "array",
+            "title": "Registered Vehicle Ids"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "snapshot",
+          "run_status",
+          "recovery_required",
+          "applied_state_version",
+          "applied_sim_time_ms",
+          "view_scope",
+          "registered_vehicle_ids"
+        ],
+        "title": "DriverStateView"
+      },
+      "ExecutionsHistory": {
+        "properties": {
+          "as_of_utc": {
+            "type": "string",
+            "title": "As Of Utc"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          },
+          "consistency": {
+            "type": "string",
+            "const": "immutable_projection_current_authority",
+            "title": "Consistency",
+            "default": "immutable_projection_current_authority"
+          },
+          "preservation_limits": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Preservation Limits"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/HistoryExecution"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "as_of_utc",
+          "items"
+        ],
+        "title": "ExecutionsHistory"
+      },
+      "GateObservation": {
+        "properties": {
+          "device_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Device Id"
+          },
+          "type": {
+            "type": "string",
+            "const": "gate",
+            "title": "Type"
+          },
+          "resource_version": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Resource Version"
+          },
+          "entry_policy": {
+            "type": "string",
+            "enum": [
+              "allow",
+              "deny"
+            ],
+            "title": "Entry Policy"
+          },
+          "physical_state": {
+            "type": "string",
+            "enum": [
+              "open",
+              "closed",
+              "opening",
+              "closing",
+              "stopped",
+              "unknown"
+            ],
+            "title": "Physical State"
+          },
+          "obstacle_detected": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Obstacle Detected"
+          },
+          "fault_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fault Code"
+          },
+          "observed_at": {
+            "type": "string",
+            "title": "Observed At"
+          },
+          "quality": {
+            "$ref": "#/components/schemas/Quality"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "device_id",
+          "type",
+          "resource_version",
+          "entry_policy",
+          "physical_state",
+          "obstacle_detected",
+          "fault_code",
+          "observed_at",
+          "quality"
+        ],
+        "title": "GateObservation"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "type": "array",
+            "title": "Detail"
+          }
+        },
+        "type": "object",
+        "title": "HTTPValidationError"
+      },
+      "HistoryCommand": {
+        "properties": {
+          "command_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Command Id"
+          },
+          "facility_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Facility Id"
+          },
+          "run_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Run Id"
+          },
+          "purpose": {
+            "type": "string",
+            "title": "Purpose"
+          },
+          "aggregate_status": {
+            "type": "string",
+            "title": "Aggregate Status"
+          },
+          "cancellation_requested_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cancellation Requested At"
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "title": "Updated At"
+          },
+          "resource_version": {
+            "type": "integer",
+            "title": "Resource Version"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "command_id",
+          "facility_id",
+          "run_id",
+          "purpose",
+          "aggregate_status",
+          "created_at",
+          "updated_at",
+          "resource_version"
+        ],
+        "title": "HistoryCommand"
+      },
+      "HistoryExecution": {
+        "properties": {
+          "execution_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Execution Id"
+          },
+          "facility_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Facility Id"
+          },
+          "run_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Run Id"
+          },
+          "command_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Command Id"
+          },
+          "incident_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Incident Id"
+          },
+          "plan_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Plan Id"
+          },
+          "tool_name": {
+            "type": "string",
+            "title": "Tool Name"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "synthetic_demo",
+              "simulated",
+              "live"
+            ],
+            "title": "Mode"
+          },
+          "applied_sim_time_ms": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Applied Sim Time Ms"
+          },
+          "cancellation_requested_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cancellation Requested At"
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          },
+          "created_at": {
+            "type": "string",
+            "title": "Created At"
+          },
+          "updated_at": {
+            "type": "string",
+            "title": "Updated At"
+          },
+          "resource_version": {
+            "type": "integer",
+            "title": "Resource Version"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "execution_id",
+          "facility_id",
+          "run_id",
+          "tool_name",
+          "status",
+          "mode",
+          "created_at",
+          "updated_at",
+          "resource_version"
+        ],
+        "title": "HistoryExecution"
+      },
+      "IncidentTimeline": {
+        "properties": {
+          "as_of_utc": {
+            "type": "string",
+            "title": "As Of Utc"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          },
+          "consistency": {
+            "type": "string",
+            "const": "immutable_projection_current_authority",
+            "title": "Consistency",
+            "default": "immutable_projection_current_authority"
+          },
+          "preservation_limits": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Preservation Limits"
+          },
+          "incident_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Incident Id"
+          },
+          "facility_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Facility Id"
+          },
+          "run_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Run Id"
+          },
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/TimelineRecord"
+            },
+            "type": "array",
+            "title": "Items"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "as_of_utc",
+          "incident_id",
+          "facility_id",
+          "run_id",
+          "items"
+        ],
+        "title": "IncidentTimeline"
+      },
+      "LiveAgentQuery": {
+        "properties": {
+          "run_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Run Id"
+          },
+          "goal": {
+            "type": "string",
+            "enum": [
+              "current_state",
+              "my_vehicle",
+              "regulation"
+            ],
+            "title": "Goal"
+          },
+          "query": {
+            "type": "string",
+            "maxLength": 500,
+            "title": "Query",
+            "default": ""
+          },
+          "provider": {
+            "type": "string",
+            "enum": [
+              "auto",
+              "openai",
+              "gemini"
+            ],
+            "title": "Provider",
+            "default": "auto"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "run_id",
+          "goal"
+        ],
+        "title": "LiveAgentQuery"
+      },
+      "Login": {
+        "properties": {
+          "username": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 1,
+            "title": "Username"
+          },
+          "password": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Password"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "username",
+          "password"
+        ],
+        "title": "Login"
+      },
+      "ManualS1": {
+        "properties": {
+          "run_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Run Id"
+          },
+          "action": {
+            "type": "string",
+            "enum": [
+              "notify",
+              "recheck",
+              "review_timeout"
+            ],
+            "title": "Action"
+          },
+          "incident_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Incident Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "run_id",
+          "action"
+        ],
+        "title": "ManualS1"
+      },
+      "ObjectEvent": {
+        "properties": {
+          "object_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Object Id"
+          },
+          "event_type": {
+            "type": "string",
+            "enum": [
+              "entered",
+              "exited"
+            ],
+            "title": "Event Type"
+          },
+          "portal_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Portal Id"
+          },
+          "sim_time_ms": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Sim Time Ms"
+          },
+          "observed_at": {
+            "type": "string",
+            "title": "Observed At"
+          },
+          "quality": {
+            "$ref": "#/components/schemas/Quality"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "object_id",
+          "event_type",
+          "portal_id",
+          "sim_time_ms",
+          "observed_at",
+          "quality"
+        ],
+        "title": "ObjectEvent"
+      },
+      "ObjectMappingChange": {
+        "properties": {
+          "run_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Run Id"
+          },
+          "expected_version": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected Version"
+          },
+          "registered_vehicle_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Registered Vehicle Id"
+          },
+          "mapping_status": {
+            "type": "string",
+            "enum": [
+              "verified",
+              "uncertain",
+              "unmapped"
+            ],
+            "title": "Mapping Status"
+          },
+          "mapping_source": {
+            "type": "string",
+            "enum": [
+              "demo_config",
+              "reviewed"
+            ],
+            "title": "Mapping Source"
+          },
+          "reason": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Reason"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "run_id",
+          "expected_version",
+          "mapping_status",
+          "mapping_source",
+          "reason"
+        ],
+        "title": "ObjectMappingChange"
+      },
+      "Observation": {
+        "properties": {
+          "schema_version": {
+            "type": "string",
+            "const": "0.1-draft",
+            "title": "Schema Version",
+            "default": "0.1-draft"
+          },
+          "facility_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Facility Id"
+          },
+          "run_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Run Id"
+          },
+          "observation_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Observation Id"
+          },
+          "source": {
+            "type": "string",
+            "const": "simulator",
+            "title": "Source",
+            "default": "simulator"
+          },
+          "map_version": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Map Version"
+          },
+          "state_version": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "State Version"
+          },
+          "sim_time_ms": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Sim Time Ms"
+          },
+          "observed_at": {
+            "type": "string",
+            "title": "Observed At"
+          },
+          "received_at": {
+            "type": "string",
+            "title": "Received At"
+          },
+          "coverage": {
+            "type": "string",
+            "enum": [
+              "complete",
+              "partial",
+              "unavailable"
+            ],
+            "title": "Coverage"
+          },
+          "objects": {
+            "items": {
+              "$ref": "#/components/schemas/ObservedObject"
+            },
+            "type": "array",
+            "title": "Objects"
+          },
+          "devices": {
+            "items": {
+              "$ref": "#/components/schemas/GateObservation"
+            },
+            "type": "array",
+            "title": "Devices"
+          },
+          "object_events": {
+            "items": {
+              "$ref": "#/components/schemas/ObjectEvent"
+            },
+            "type": "array",
+            "title": "Object Events"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "facility_id",
+          "run_id",
+          "observation_id",
+          "map_version",
+          "state_version",
+          "sim_time_ms",
+          "observed_at",
+          "received_at",
+          "coverage",
+          "objects",
+          "devices"
+        ],
+        "title": "Observation"
+      },
+      "ObservedObject": {
+        "properties": {
+          "object_id": {
+            "type": "string",
+            "minLength": 1,
+            "title": "Object Id"
+          },
+          "object_type": {
+            "type": "string",
+            "enum": [
+              "vehicle",
+              "pedestrian",
+              "unknown"
+            ],
+            "title": "Object Type"
+          },
+          "position": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Position"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "size": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Size"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "heading_deg": {
+            "anyOf": [
+              {
+                "type": "number",
+                "exclusiveMaximum": 360.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Heading Deg"
+          },
+          "quality": {
+            "$ref": "#/components/schemas/Quality"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "object_id",
+          "object_type",
+          "position",
+          "size",
+          "heading_deg",
+          "quality"
+        ],
+        "title": "ObservedObject"
+      },
+      "OwnParkingMap": {
+        "properties": {
+          "view_version": {
+            "type": "string",
+            "const": "static-parking-map-v1",
+            "title": "View Version",
+            "default": "static-parking-map-v1"
+          },
+          "view_scope": {
+            "type": "string",
+            "const": "static_geometry",
+            "title": "View Scope",
+            "default": "static_geometry"
+          },
+          "facility_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Facility Id"
+          },
+          "map_version": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Map Version"
+          },
+          "coordinate_system": {
+            "$ref": "#/components/schemas/ParkingCoordinates"
+          },
+          "bounds": {
+            "$ref": "#/components/schemas/ParkingBounds"
+          },
+          "zones": {
+            "items": {
+              "$ref": "#/components/schemas/ParkingZone"
+            },
+            "type": "array",
+            "title": "Zones"
+          },
+          "parking_bays": {
+            "items": {
+              "$ref": "#/components/schemas/ParkingBay"
+            },
+            "type": "array",
+            "title": "Parking Bays"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "facility_id",
+          "map_version",
+          "coordinate_system",
+          "bounds",
+          "zones",
+          "parking_bays"
+        ],
+        "title": "OwnParkingMap"
+      },
+      "ParkingBay": {
+        "properties": {
+          "zone_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Zone Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "zone_id"
+        ],
+        "title": "ParkingBay"
+      },
+      "ParkingBounds": {
+        "properties": {
+          "min_x": {
+            "type": "number",
+            "title": "Min X"
+          },
+          "min_y": {
+            "type": "number",
+            "title": "Min Y"
+          },
+          "max_x": {
+            "type": "number",
+            "title": "Max X"
+          },
+          "max_y": {
+            "type": "number",
+            "title": "Max Y"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "min_x",
+          "min_y",
+          "max_x",
+          "max_y"
+        ],
+        "title": "ParkingBounds"
+      },
+      "ParkingCoordinates": {
+        "properties": {
+          "unit": {
+            "type": "string",
+            "const": "m",
+            "title": "Unit"
+          },
+          "origin": {
+            "type": "string",
+            "const": "southwest",
+            "title": "Origin"
+          },
+          "x_axis": {
+            "type": "string",
+            "const": "east",
+            "title": "X Axis"
+          },
+          "y_axis": {
+            "type": "string",
+            "const": "north",
+            "title": "Y Axis"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "unit",
+          "origin",
+          "x_axis",
+          "y_axis"
+        ],
+        "title": "ParkingCoordinates"
+      },
+      "ParkingZone": {
+        "properties": {
+          "zone_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Zone Id"
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "parking_bay",
+              "aisle",
+              "entrance",
+              "exit",
+              "pedestrian",
+              "announcement"
+            ],
+            "title": "Type"
+          },
+          "polygon": {
+            "items": {
+              "$ref": "#/components/schemas/Position"
+            },
+            "type": "array",
+            "title": "Polygon"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "zone_id",
+          "type",
+          "polygon"
+        ],
+        "title": "ParkingZone"
+      },
+      "PersonMappingChange": {
+        "properties": {
+          "run_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Run Id"
+          },
+          "expected_version": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected Version"
+          },
+          "user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "User Id"
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "proposed",
+              "uncertain",
+              "verified",
+              "unmapped"
+            ],
+            "title": "Status"
+          },
+          "source": {
+            "type": "string",
+            "enum": [
+              "demo_config",
+              "reviewed"
+            ],
+            "title": "Source"
+          },
+          "reason": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Reason"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "run_id",
+          "expected_version",
+          "status",
+          "source",
+          "reason"
+        ],
+        "title": "PersonMappingChange"
+      },
+      "PlanProgress": {
+        "properties": {
+          "plan_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Plan Id"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "resource_version": {
+            "type": "integer",
+            "title": "Resource Version"
+          },
+          "steps": {
+            "items": {
+              "$ref": "#/components/schemas/PlanStepProgress"
+            },
+            "type": "array",
+            "title": "Steps"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "plan_id",
+          "status",
+          "resource_version",
+          "steps"
+        ],
+        "title": "PlanProgress"
+      },
+      "PlanStepProgress": {
+        "properties": {
+          "index": {
+            "type": "integer",
+            "title": "Index"
+          },
+          "step_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Step Id"
+          },
+          "tool_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tool Name"
+          },
+          "zone_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Zone Id"
+          },
+          "status": {
+            "type": "string",
+            "title": "Status"
+          },
+          "reason_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason Code"
+          },
+          "attempts": {
+            "items": {
+              "$ref": "#/components/schemas/StepAttempt"
+            },
+            "type": "array",
+            "title": "Attempts"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "index",
+          "status",
+          "attempts"
+        ],
+        "title": "PlanStepProgress"
+      },
+      "Position": {
+        "properties": {
+          "x": {
+            "type": "number",
+            "title": "X"
+          },
+          "y": {
+            "type": "number",
+            "title": "Y"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "x",
+          "y"
+        ],
+        "title": "Position"
+      },
+      "Quality": {
+        "properties": {
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "visible",
+              "occluded",
+              "missing"
+            ],
+            "title": "Visibility",
+            "default": "visible"
+          },
+          "uncertainty_m": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Uncertainty M",
+            "default": 0
+          },
+          "missing_fields": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Missing Fields"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "Quality"
+      },
+      "ReceiptInput": {
+        "properties": {
+          "client_request_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Client Request Id"
+          },
+          "received_at": {
+            "type": "string",
+            "title": "Received At"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "client_request_id",
+          "received_at"
+        ],
+        "title": "ReceiptInput"
+      },
+      "RegisteredVehicle": {
+        "properties": {
+          "registered_vehicle_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Registered Vehicle Id"
+          },
+          "facility_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Facility Id"
+          },
+          "display_alias": {
+            "type": "string",
+            "title": "Display Alias"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "registered_vehicle_id",
+          "facility_id",
+          "display_alias"
+        ],
+        "title": "RegisteredVehicle"
+      },
+      "ResponseInput": {
+        "properties": {
+          "client_request_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Client Request Id"
+          },
+          "response": {
+            "type": "string",
+            "enum": [
+              "acknowledged",
+              "will_move",
+              "cannot_move",
+              "question"
+            ],
+            "title": "Response"
+          },
+          "text": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 1000
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Text"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "client_request_id",
+          "response"
+        ],
+        "title": "ResponseInput"
+      },
+      "RunView": {
+        "properties": {
+          "snapshot": {
+            "$ref": "#/components/schemas/Observation"
+          },
+          "run_status": {
+            "type": "string",
+            "enum": [
+              "running",
+              "paused",
+              "stopped",
+              "replaying"
+            ],
+            "title": "Run Status"
+          },
+          "recovery_required": {
+            "type": "boolean",
+            "title": "Recovery Required"
+          },
+          "applied_state_version": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Applied State Version"
+          },
+          "applied_sim_time_ms": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Applied Sim Time Ms"
+          },
+          "run_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Run Id"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "snapshot",
+          "run_status",
+          "recovery_required",
+          "applied_state_version",
+          "applied_sim_time_ms",
+          "run_id"
+        ],
+        "title": "RunView"
+      },
+      "S2ReactionInput": {
+        "properties": {
+          "expected_state_version": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected State Version"
+          },
+          "mode": {
+            "type": "string",
+            "enum": [
+              "brake_on_alarm",
+              "no_response"
+            ],
+            "title": "Mode"
+          },
+          "delay_ms": {
+            "type": "integer",
+            "maximum": 3000.0,
+            "minimum": 0.0,
+            "title": "Delay Ms",
+            "default": 0
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "expected_state_version",
+          "mode"
+        ],
+        "title": "S2ReactionInput"
+      },
+      "Size": {
+        "properties": {
+          "length_m": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Length M"
+          },
+          "width_m": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Width M"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "length_m",
+          "width_m"
+        ],
+        "title": "Size"
+      },
+      "SpatialAnalysis": {
+        "properties": {
+          "analysis_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Analysis Id"
+          },
+          "analysis_version": {
+            "type": "string",
+            "const": "west-straight-v1",
+            "title": "Analysis Version",
+            "default": "west-straight-v1"
+          },
+          "facility_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Facility Id"
+          },
+          "run_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Run Id"
+          },
+          "map_version": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Map Version"
+          },
+          "route_policy_version": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Route Policy Version"
+          },
+          "observation_ids": {
+            "items": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1
+            },
+            "type": "array",
+            "title": "Observation Ids"
+          },
+          "state_version": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "State Version"
+          },
+          "evaluated_at_sim_time_ms": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Evaluated At Sim Time Ms"
+          },
+          "analyzed_at": {
+            "type": "string",
+            "title": "Analyzed At"
+          },
+          "object_ids": {
+            "items": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1
+            },
+            "type": "array",
+            "title": "Object Ids"
+          },
+          "zone_ids": {
+            "items": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1
+            },
+            "type": "array",
+            "title": "Zone Ids"
+          },
+          "metrics": {
+            "$ref": "#/components/schemas/SpatialMetrics"
+          },
+          "assumptions": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Assumptions"
+          },
+          "quality": {
+            "$ref": "#/components/schemas/AnalysisQuality"
+          },
+          "support_status": {
+            "type": "string",
+            "enum": [
+              "supported",
+              "insufficient_data",
+              "unsupported_geometry"
+            ],
+            "title": "Support Status"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "analysis_id",
+          "facility_id",
+          "run_id",
+          "map_version",
+          "route_policy_version",
+          "observation_ids",
+          "state_version",
+          "evaluated_at_sim_time_ms",
+          "analyzed_at",
+          "object_ids",
+          "zone_ids",
+          "metrics",
+          "assumptions",
+          "quality",
+          "support_status"
+        ],
+        "title": "SpatialAnalysis"
+      },
+      "SpatialMetrics": {
+        "properties": {
+          "passage": {
+            "type": "string",
+            "enum": [
+              "clear",
+              "blocked",
+              "unknown"
+            ],
+            "title": "Passage",
+            "default": "unknown"
+          },
+          "available_clearance_m": {
+            "anyOf": [
+              {
+                "type": "number",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Available Clearance M"
+          },
+          "required_clearance_m": {
+            "type": "number",
+            "exclusiveMinimum": 0.0,
+            "title": "Required Clearance M"
+          },
+          "occupied_object_ids": {
+            "items": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1
+            },
+            "type": "array",
+            "title": "Occupied Object Ids"
+          },
+          "blocked_duration_ms": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Blocked Duration Ms"
+          },
+          "clear_duration_ms": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Clear Duration Ms"
+          },
+          "clearance_sustained": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Clearance Sustained"
+          },
+          "objects": {
+            "items": {
+              "$ref": "#/components/schemas/StopMetric"
+            },
+            "type": "array",
+            "title": "Objects"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "required_clearance_m"
+        ],
+        "title": "SpatialMetrics"
+      },
+      "StateView": {
+        "properties": {
+          "snapshot": {
+            "$ref": "#/components/schemas/Observation"
+          },
+          "run_status": {
+            "type": "string",
+            "enum": [
+              "running",
+              "paused",
+              "stopped",
+              "replaying"
+            ],
+            "title": "Run Status"
+          },
+          "recovery_required": {
+            "type": "boolean",
+            "title": "Recovery Required"
+          },
+          "applied_state_version": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Applied State Version"
+          },
+          "applied_sim_time_ms": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Applied Sim Time Ms"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "snapshot",
+          "run_status",
+          "recovery_required",
+          "applied_state_version",
+          "applied_sim_time_ms"
+        ],
+        "title": "StateView"
+      },
+      "StepAttempt": {
+        "properties": {
+          "execution_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Execution Id"
+          },
+          "linkage_status": {
+            "type": "string",
+            "enum": [
+              "linked",
+              "unknown"
+            ],
+            "title": "Linkage Status"
+          },
+          "reason_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason Code"
+          },
+          "execution": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/HistoryExecution"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "execution_id",
+          "linkage_status"
+        ],
+        "title": "StepAttempt"
+      },
+      "StopMetric": {
+        "properties": {
+          "object_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Object Id"
+          },
+          "stop_duration_ms": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Stop Duration Ms"
+          },
+          "stationary_candidate": {
+            "type": "boolean",
+            "title": "Stationary Candidate"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "object_id",
+          "stop_duration_ms",
+          "stationary_candidate"
+        ],
+        "title": "StopMetric"
+      },
+      "SyntheticUserInput": {
+        "properties": {
+          "mode": {
+            "type": "string",
+            "enum": [
+              "manual",
+              "will_move",
+              "acknowledged",
+              "cannot_move",
+              "question",
+              "silent"
+            ],
+            "title": "Mode",
+            "default": "manual"
+          },
+          "response_delay_ms": {
+            "type": "integer",
+            "maximum": 60000.0,
+            "minimum": 0.0,
+            "title": "Response Delay Ms",
+            "default": 0
+          },
+          "movement_delay_ms": {
+            "type": "integer",
+            "maximum": 60000.0,
+            "minimum": 0.0,
+            "title": "Movement Delay Ms",
+            "default": 0
+          },
+          "expected_state_version": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected State Version"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "expected_state_version"
+        ],
+        "title": "SyntheticUserInput"
+      },
+      "TimelineDetails": {
+        "properties": {
+          "status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Status"
+          },
+          "mode": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Mode"
+          },
+          "tool_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tool Name"
+          },
+          "purpose": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Purpose"
+          },
+          "delivery_status": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Delivery Status"
+          },
+          "response": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Response"
+          },
+          "attempt_number": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Attempt Number"
+          },
+          "error_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error Code"
+          },
+          "action": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Action"
+          },
+          "outcome": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Outcome"
+          },
+          "reason_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason Code"
+          },
+          "clock": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Clock"
+          },
+          "due_sim_time_ms": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Due Sim Time Ms"
+          },
+          "due_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Due At"
+          },
+          "received_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Received At"
+          },
+          "created_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Created At"
+          },
+          "updated_at": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Updated At"
+          },
+          "resource_version": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Resource Version"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "title": "TimelineDetails"
+      },
+      "TimelineRecord": {
+        "properties": {
+          "event_id": {
+            "type": "string",
+            "title": "Event Id"
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "incident.latest_state",
+              "execution.latest_state",
+              "notification.latest_state",
+              "delivery_attempt.latest_state",
+              "notification.receipt",
+              "notification.response",
+              "followup.latest_state",
+              "audit"
+            ],
+            "title": "Kind"
+          },
+          "record_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Record Id"
+          },
+          "parent_record_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parent Record Id"
+          },
+          "recorded_at_utc": {
+            "type": "string",
+            "title": "Recorded At Utc"
+          },
+          "sim_time_ms": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sim Time Ms"
+          },
+          "details": {
+            "$ref": "#/components/schemas/TimelineDetails"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "event_id",
+          "kind",
+          "record_id",
+          "recorded_at_utc",
+          "details"
+        ],
+        "title": "TimelineRecord"
+      },
+      "ValidationError": {
+        "properties": {
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "type": "array",
+            "title": "Location"
+          },
+          "msg": {
+            "type": "string",
+            "title": "Message"
+          },
+          "type": {
+            "type": "string",
+            "title": "Error Type"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "ctx": {
+            "type": "object",
+            "title": "Context"
+          }
+        },
+        "type": "object",
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError"
+      },
+      "VehicleChange": {
+        "properties": {
+          "expected_version": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected Version"
+          },
+          "reason": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Reason"
+          },
+          "display_alias": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 64,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Display Alias"
+          },
+          "active": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Active"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "expected_version",
+          "reason"
+        ],
+        "title": "VehicleChange"
+      },
+      "VehicleCreate": {
+        "properties": {
+          "display_alias": {
+            "type": "string",
+            "maxLength": 64,
+            "minLength": 1,
+            "title": "Display Alias"
+          },
+          "reason": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Reason"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "display_alias",
+          "reason"
+        ],
+        "title": "VehicleCreate"
+      },
+      "VehicleList": {
+        "properties": {
+          "facility_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Facility Id"
+          },
+          "vehicles": {
+            "items": {
+              "$ref": "#/components/schemas/RegisteredVehicle"
+            },
+            "type": "array",
+            "title": "Vehicles"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "facility_id",
+          "vehicles"
+        ],
+        "title": "VehicleList"
+      },
+      "VehicleLocation": {
+        "properties": {
+          "registered_vehicle_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Registered Vehicle Id"
+          },
+          "display_alias": {
+            "type": "string",
+            "title": "Display Alias"
+          },
+          "object_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Object Id"
+          },
+          "position": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Position"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "size": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Size"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "heading_deg": {
+            "anyOf": [
+              {
+                "type": "number",
+                "exclusiveMaximum": 360.0,
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Heading Deg"
+          },
+          "quality": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Quality"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "observed_bay_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Observed Bay Id"
+          },
+          "location_status": {
+            "type": "string",
+            "enum": [
+              "observed_bay",
+              "observed_position",
+              "unknown"
+            ],
+            "title": "Location Status"
+          },
+          "location_reason": {
+            "type": "string",
+            "enum": [
+              "stationary_whole_footprint_in_unique_bay",
+              "no_verified_relationship",
+              "ambiguous_relationship",
+              "target_not_observed",
+              "observation_unavailable",
+              "observation_insufficient",
+              "stale_observation",
+              "run_not_ready",
+              "moving",
+              "insufficient_history",
+              "uncertain_stationarity",
+              "outside_or_intruding_bay",
+              "ambiguous_bay",
+              "unsupported_geometry"
+            ],
+            "title": "Location Reason"
+          },
+          "evidence_observation_ids": {
+            "items": {
+              "type": "string",
+              "maxLength": 128,
+              "minLength": 1
+            },
+            "type": "array",
+            "title": "Evidence Observation Ids"
+          },
+          "evidence_reasons": {
+            "items": {
+              "type": "string"
+            },
+            "type": "array",
+            "title": "Evidence Reasons"
+          },
+          "stationary_duration_ms": {
+            "anyOf": [
+              {
+                "type": "integer",
+                "minimum": 0.0
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Stationary Duration Ms"
+          },
+          "bay_semantics": {
+            "type": "string",
+            "const": "observed_not_assigned",
+            "title": "Bay Semantics",
+            "default": "observed_not_assigned"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "registered_vehicle_id",
+          "display_alias",
+          "object_id",
+          "position",
+          "size",
+          "heading_deg",
+          "quality",
+          "observed_bay_id",
+          "location_status",
+          "location_reason"
+        ],
+        "title": "VehicleLocation"
+      },
+      "VehicleLocations": {
+        "properties": {
+          "view_version": {
+            "type": "string",
+            "const": "own-vehicle-locations-v1",
+            "title": "View Version",
+            "default": "own-vehicle-locations-v1"
+          },
+          "view_scope": {
+            "type": "string",
+            "const": "own_vehicles",
+            "title": "View Scope",
+            "default": "own_vehicles"
+          },
+          "facility_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Facility Id"
+          },
+          "run_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Run Id"
+          },
+          "map_version": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Map Version"
+          },
+          "observation_id": {
+            "type": "string",
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Observation Id"
+          },
+          "state_version": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "State Version"
+          },
+          "sim_time_ms": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Sim Time Ms"
+          },
+          "observed_at": {
+            "type": "string",
+            "title": "Observed At"
+          },
+          "received_at": {
+            "type": "string",
+            "title": "Received At"
+          },
+          "coverage": {
+            "type": "string",
+            "enum": [
+              "complete",
+              "partial",
+              "unavailable"
+            ],
+            "title": "Coverage"
+          },
+          "run_status": {
+            "type": "string",
+            "enum": [
+              "running",
+              "paused",
+              "stopped",
+              "replaying"
+            ],
+            "title": "Run Status"
+          },
+          "recovery_required": {
+            "type": "boolean",
+            "title": "Recovery Required"
+          },
+          "applied_state_version": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Applied State Version"
+          },
+          "applied_sim_time_ms": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Applied Sim Time Ms"
+          },
+          "settings_version": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Settings Version"
+          },
+          "vehicles": {
+            "items": {
+              "$ref": "#/components/schemas/VehicleLocation"
+            },
+            "type": "array",
+            "title": "Vehicles"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "facility_id",
+          "run_id",
+          "map_version",
+          "observation_id",
+          "state_version",
+          "sim_time_ms",
+          "observed_at",
+          "received_at",
+          "coverage",
+          "run_status",
+          "recovery_required",
+          "applied_state_version",
+          "applied_sim_time_ms",
+          "settings_version",
+          "vehicles"
+        ],
+        "title": "VehicleLocations"
+      },
+      "VehicleUserChange": {
+        "properties": {
+          "expected_version": {
+            "type": "integer",
+            "minimum": 0.0,
+            "title": "Expected Version"
+          },
+          "user_id": {
+            "anyOf": [
+              {
+                "type": "string",
+                "maxLength": 128,
+                "minLength": 1
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "User Id"
+          },
+          "reason": {
+            "type": "string",
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Reason"
+          }
+        },
+        "additionalProperties": false,
+        "type": "object",
+        "required": [
+          "expected_version",
+          "reason"
+        ],
+        "title": "VehicleUserChange"
+      }
+    }
+  }
+}

@@ -1,0 +1,155 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "analysis_version": {
+      "const": "s1b-fixed-exit-v1",
+      "default": "s1b-fixed-exit-v1",
+      "title": "Analysis Version",
+      "type": "string"
+    },
+    "facility_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Facility Id",
+      "type": "string"
+    },
+    "run_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Run Id",
+      "type": "string"
+    },
+    "map_version": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Map Version",
+      "type": "string"
+    },
+    "route_policy_version": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Route Policy Version",
+      "type": "string"
+    },
+    "candidate_id": {
+      "const": "b01-reverse-arc-west-v1",
+      "default": "b01-reverse-arc-west-v1",
+      "title": "Candidate Id",
+      "type": "string"
+    },
+    "observation_ids": {
+      "items": {
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Observation Ids",
+      "type": "array"
+    },
+    "state_version": {
+      "minimum": 0,
+      "title": "State Version",
+      "type": "integer"
+    },
+    "evaluated_at_sim_time_ms": {
+      "minimum": 0,
+      "title": "Evaluated At Sim Time Ms",
+      "type": "integer"
+    },
+    "analyzed_at": {
+      "title": "Analyzed At",
+      "type": "string"
+    },
+    "support_status": {
+      "enum": [
+        "supported",
+        "insufficient_data",
+        "unsupported_geometry"
+      ],
+      "title": "Support Status",
+      "type": "string"
+    },
+    "candidate_passage": {
+      "enum": [
+        "clear",
+        "blocked",
+        "unknown"
+      ],
+      "title": "Candidate Passage",
+      "type": "string"
+    },
+    "collision_object_ids": {
+      "items": {
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Collision Object Ids",
+      "type": "array"
+    },
+    "reasons": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Reasons",
+      "type": "array"
+    },
+    "arc_discretization_bound_m": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Arc Discretization Bound M"
+    },
+    "applied_clearance_m": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Applied Clearance M"
+    },
+    "obstacle_uncertainty_m": {
+      "additionalProperties": {
+        "type": "number"
+      },
+      "title": "Obstacle Uncertainty M",
+      "type": "object"
+    },
+    "assumptions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Assumptions",
+      "type": "array"
+    }
+  },
+  "required": [
+    "facility_id",
+    "run_id",
+    "map_version",
+    "route_policy_version",
+    "observation_ids",
+    "state_version",
+    "evaluated_at_sim_time_ms",
+    "analyzed_at",
+    "support_status",
+    "candidate_passage",
+    "collision_object_ids",
+    "reasons",
+    "assumptions"
+  ],
+  "title": "ExitCandidateAnalysis",
+  "type": "object"
+}

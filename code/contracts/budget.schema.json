@@ -1,0 +1,297 @@
+{
+  "BudgetLimits": {
+    "additionalProperties": false,
+    "properties": {
+      "total_krw": {
+        "anyOf": [
+          {
+            "exclusiveMinimum": 0,
+            "maximum": 10000000,
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Total Krw"
+      },
+      "daily_krw": {
+        "anyOf": [
+          {
+            "exclusiveMinimum": 0,
+            "maximum": 10000000,
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Daily Krw"
+      }
+    },
+    "title": "BudgetLimits",
+    "type": "object"
+  },
+  "TokenPricing": {
+    "additionalProperties": false,
+    "properties": {
+      "provider": {
+        "maxLength": 64,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+        "title": "Provider",
+        "type": "string"
+      },
+      "model": {
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+        "title": "Model",
+        "type": "string"
+      },
+      "input_krw_per_million": {
+        "pattern": "^(?:0|[1-9][0-9]{0,8})(?:\\.[0-9]{1,6})?$",
+        "title": "Input Krw Per Million",
+        "type": "string"
+      },
+      "output_krw_per_million": {
+        "pattern": "^(?:0|[1-9][0-9]{0,8})(?:\\.[0-9]{1,6})?$",
+        "title": "Output Krw Per Million",
+        "type": "string"
+      }
+    },
+    "required": [
+      "provider",
+      "model",
+      "input_krw_per_million",
+      "output_krw_per_million"
+    ],
+    "title": "TokenPricing",
+    "type": "object"
+  },
+  "TokenQuote": {
+    "$defs": {
+      "TokenPricing": {
+        "additionalProperties": false,
+        "properties": {
+          "provider": {
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+            "title": "Provider",
+            "type": "string"
+          },
+          "model": {
+            "maxLength": 128,
+            "minLength": 1,
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+            "title": "Model",
+            "type": "string"
+          },
+          "input_krw_per_million": {
+            "pattern": "^(?:0|[1-9][0-9]{0,8})(?:\\.[0-9]{1,6})?$",
+            "title": "Input Krw Per Million",
+            "type": "string"
+          },
+          "output_krw_per_million": {
+            "pattern": "^(?:0|[1-9][0-9]{0,8})(?:\\.[0-9]{1,6})?$",
+            "title": "Output Krw Per Million",
+            "type": "string"
+          }
+        },
+        "required": [
+          "provider",
+          "model",
+          "input_krw_per_million",
+          "output_krw_per_million"
+        ],
+        "title": "TokenPricing",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "request_key": {
+        "maxLength": 128,
+        "minLength": 1,
+        "pattern": "^[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}$",
+        "title": "Request Key",
+        "type": "string"
+      },
+      "input_tokens": {
+        "maximum": 2000000,
+        "minimum": 1,
+        "title": "Input Tokens",
+        "type": "integer"
+      },
+      "max_output_tokens": {
+        "maximum": 2000000,
+        "minimum": 1,
+        "title": "Max Output Tokens",
+        "type": "integer"
+      },
+      "pricing": {
+        "$ref": "#/$defs/TokenPricing"
+      }
+    },
+    "required": [
+      "request_key",
+      "input_tokens",
+      "max_output_tokens",
+      "pricing"
+    ],
+    "title": "TokenQuote",
+    "type": "object"
+  },
+  "BudgetReservation": {
+    "additionalProperties": false,
+    "properties": {
+      "request_key": {
+        "title": "Request Key",
+        "type": "string"
+      },
+      "provider": {
+        "title": "Provider",
+        "type": "string"
+      },
+      "model": {
+        "title": "Model",
+        "type": "string"
+      },
+      "day_kst": {
+        "title": "Day Kst",
+        "type": "string"
+      },
+      "state": {
+        "enum": [
+          "reserved",
+          "dispatched",
+          "unknown",
+          "settled",
+          "cancelled"
+        ],
+        "title": "State",
+        "type": "string"
+      },
+      "reserved_krw": {
+        "minimum": 0,
+        "title": "Reserved Krw",
+        "type": "integer"
+      },
+      "actual_krw": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Actual Krw"
+      },
+      "actual_input_tokens": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Actual Input Tokens"
+      },
+      "actual_output_tokens": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Actual Output Tokens"
+      }
+    },
+    "required": [
+      "request_key",
+      "provider",
+      "model",
+      "day_kst",
+      "state",
+      "reserved_krw"
+    ],
+    "title": "BudgetReservation",
+    "type": "object"
+  },
+  "BudgetSnapshot": {
+    "additionalProperties": false,
+    "properties": {
+      "day_kst": {
+        "title": "Day Kst",
+        "type": "string"
+      },
+      "total_limit_krw": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Total Limit Krw"
+      },
+      "daily_limit_krw": {
+        "anyOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "title": "Daily Limit Krw"
+      },
+      "total_spent_krw": {
+        "title": "Total Spent Krw",
+        "type": "integer"
+      },
+      "total_pending_krw": {
+        "title": "Total Pending Krw",
+        "type": "integer"
+      },
+      "daily_spent_krw": {
+        "title": "Daily Spent Krw",
+        "type": "integer"
+      },
+      "daily_pending_krw": {
+        "title": "Daily Pending Krw",
+        "type": "integer"
+      },
+      "unknown_count": {
+        "title": "Unknown Count",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "day_kst",
+      "total_limit_krw",
+      "daily_limit_krw",
+      "total_spent_krw",
+      "total_pending_krw",
+      "daily_spent_krw",
+      "daily_pending_krw",
+      "unknown_count"
+    ],
+    "title": "BudgetSnapshot",
+    "type": "object"
+  }
+}

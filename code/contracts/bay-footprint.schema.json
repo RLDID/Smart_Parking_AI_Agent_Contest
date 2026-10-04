@@ -1,0 +1,262 @@
+{
+  "$defs": {
+    "BayOverlapArea": {
+      "additionalProperties": false,
+      "properties": {
+        "nominal_m2": {
+          "minimum": 0,
+          "title": "Nominal M2",
+          "type": "number"
+        },
+        "lower_bound_m2": {
+          "minimum": 0,
+          "title": "Lower Bound M2",
+          "type": "number"
+        },
+        "upper_bound_m2": {
+          "minimum": 0,
+          "title": "Upper Bound M2",
+          "type": "number"
+        }
+      },
+      "required": [
+        "nominal_m2",
+        "lower_bound_m2",
+        "upper_bound_m2"
+      ],
+      "title": "BayOverlapArea",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "analysis_version": {
+      "const": "s1c-bay-footprint-v1",
+      "default": "s1c-bay-footprint-v1",
+      "title": "Analysis Version",
+      "type": "string"
+    },
+    "facility_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Facility Id",
+      "type": "string"
+    },
+    "run_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Run Id",
+      "type": "string"
+    },
+    "map_version": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Map Version",
+      "type": "string"
+    },
+    "map_digest": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Map Digest"
+    },
+    "observation_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Observation Id",
+      "type": "string"
+    },
+    "state_version": {
+      "minimum": 0,
+      "title": "State Version",
+      "type": "integer"
+    },
+    "evaluated_at_sim_time_ms": {
+      "minimum": 0,
+      "title": "Evaluated At Sim Time Ms",
+      "type": "integer"
+    },
+    "analyzed_at": {
+      "title": "Analyzed At",
+      "type": "string"
+    },
+    "object_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Object Id",
+      "type": "string"
+    },
+    "bay_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Bay Id",
+      "type": "string"
+    },
+    "support_status": {
+      "enum": [
+        "supported",
+        "insufficient_data",
+        "unsupported_geometry"
+      ],
+      "title": "Support Status",
+      "type": "string"
+    },
+    "geometry_relation": {
+      "enum": [
+        "within",
+        "overlap",
+        "unknown"
+      ],
+      "title": "Geometry Relation",
+      "type": "string"
+    },
+    "reasons": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Reasons",
+      "type": "array"
+    },
+    "nominal_outside_area_m2": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Nominal Outside Area M2"
+    },
+    "outside_area_lower_bound_m2": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Outside Area Lower Bound M2"
+    },
+    "outside_area_upper_bound_m2": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Outside Area Upper Bound M2"
+    },
+    "nominal_max_depth_m": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Nominal Max Depth M"
+    },
+    "max_depth_lower_bound_m": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Max Depth Lower Bound M"
+    },
+    "max_depth_upper_bound_m": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Max Depth Upper Bound M"
+    },
+    "adjacent_bay_overlap_m2": {
+      "additionalProperties": {
+        "$ref": "#/$defs/BayOverlapArea"
+      },
+      "title": "Adjacent Bay Overlap M2",
+      "type": "object"
+    },
+    "applied_tolerance_m": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Applied Tolerance M"
+    },
+    "position_uncertainty_m": {
+      "anyOf": [
+        {
+          "minimum": 0,
+          "type": "number"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Position Uncertainty M"
+    },
+    "assumptions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Assumptions",
+      "type": "array"
+    }
+  },
+  "required": [
+    "facility_id",
+    "run_id",
+    "map_version",
+    "map_digest",
+    "observation_id",
+    "state_version",
+    "evaluated_at_sim_time_ms",
+    "analyzed_at",
+    "object_id",
+    "bay_id",
+    "support_status",
+    "geometry_relation",
+    "reasons",
+    "assumptions"
+  ],
+  "title": "BayGeometryAnalysis",
+  "type": "object"
+}

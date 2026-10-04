@@ -1,0 +1,18 @@
+{
+  "chunks": [
+    {
+      "reference_id": "ref-entry-closing-v1",
+      "section": "1-closing-entry",
+      "topic": "entry_exit",
+      "procedure_group_id": "group-closing-notice-v1",
+      "content": "합성 데모의 영업 종료 안내 절차: 소유자의 인증된 운영 의도와 대상 시설·현재 회차를 확인한다. 종료 시 입차 제한과 출차 허용을 구분하며, 차량이 차단바 아래에 있거나 장치 상태가 불명확하면 위험한 장치 동작을 보류한다. 출차를 임의로 막지 않는다. 이 절차의 존재는 차단바 실행기의 구현이나 실제 장치 동작을 뜻하지 않는다."
+    },
+    {
+      "reference_id": "ref-announcement-closing-v1",
+      "section": "2-notice-exceptions-followup",
+      "topic": "announcement",
+      "procedure_group_id": "group-closing-notice-v1",
+      "content": "영업 종료 안내방송과 예외: 허용된 구역과 공용 안내 문구만 사용하며 차주 개인정보를 방송하지 않는다. 방송 접수, 웹 수신, 실제 음향 재생을 각각 구분한다. 재생 실패를 성공으로 기록하지 않고 현재 결과를 조회해 중복 방송을 방지한다. 미확인 장치·관측은 소유자에게 보고한다. 안전 알림과 출차 허용은 매뉴얼 검색 장애 때문에 중단하지 않는다."
+    }
+  ]
+}

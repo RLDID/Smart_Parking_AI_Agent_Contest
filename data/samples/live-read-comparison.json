@@ -1,0 +1,23 @@
+{
+  "schema_version": "live-read-v1",
+  "pricing_checked_on": "2026-10-01",
+  "pricing_notes": "Initial comparison only. KRW per million tokens = standard USD price x 2000 KRW/USD x 1.20 contingency. This is a conservative estimate, not a live exchange rate or invoice. Cached input discounts are ignored. Total includes both configured providers; TTS remains outside this comparison.",
+  "pricing_sources": ["https://developers.openai.com/api/docs/models/gpt-6-luna", "https://ai.google.dev/gemini-api/docs/pricing"],
+  "limits": {"total_krw": 1000, "daily_krw": 1000},
+  "providers": {
+    "openai": {
+      "pricing": {
+        "provider": "openai", "model": "gpt-6-luna",
+        "input_krw_per_million": "240", "output_krw_per_million": "1200"
+      },
+      "max_output_tokens": 1024, "timeout_seconds": 8
+    },
+    "gemini": {
+      "pricing": {
+        "provider": "gemini", "model": "gemini-3.5-flash-lite",
+        "input_krw_per_million": "720", "output_krw_per_million": "6000"
+      },
+      "max_output_tokens": 1024, "timeout_seconds": 8
+    }
+  }
+}

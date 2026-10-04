@@ -1,0 +1,170 @@
+{
+  "AutonomousControl": {
+    "additionalProperties": false,
+    "properties": {
+      "run_id": {
+        "maxLength": 128,
+        "minLength": 1,
+        "title": "Run Id",
+        "type": "string"
+      },
+      "action": {
+        "enum": [
+          "start",
+          "stop",
+          "process"
+        ],
+        "title": "Action",
+        "type": "string"
+      },
+      "mode": {
+        "default": "mock",
+        "enum": [
+          "mock",
+          "live"
+        ],
+        "title": "Mode",
+        "type": "string"
+      },
+      "scenario": {
+        "anyOf": [
+          {
+            "enum": [
+              "s1a",
+              "s1b",
+              "s1c",
+              "s2",
+              "s3"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Scenario"
+      },
+      "command_id": {
+        "anyOf": [
+          {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Command Id"
+      }
+    },
+    "required": [
+      "run_id",
+      "action"
+    ],
+    "title": "AutonomousControl",
+    "type": "object"
+  },
+  "AutonomousDecision": {
+    "additionalProperties": false,
+    "properties": {
+      "scenario": {
+        "enum": [
+          "s1a",
+          "s1b",
+          "s1c",
+          "s2",
+          "s3"
+        ],
+        "title": "Scenario",
+        "type": "string"
+      },
+      "action": {
+        "enum": [
+          "notify",
+          "recheck",
+          "clarify",
+          "announce",
+          "restrict_entry",
+          "report",
+          "hold"
+        ],
+        "title": "Action",
+        "type": "string"
+      },
+      "target_ref": {
+        "anyOf": [
+          {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Target Ref"
+      },
+      "reason_code": {
+        "maxLength": 128,
+        "minLength": 1,
+        "title": "Reason Code",
+        "type": "string"
+      },
+      "rationale": {
+        "maxLength": 300,
+        "minLength": 1,
+        "title": "Rationale",
+        "type": "string"
+      }
+    },
+    "required": [
+      "scenario",
+      "action",
+      "reason_code",
+      "rationale"
+    ],
+    "title": "AutonomousDecision",
+    "type": "object"
+  },
+  "CommandClarification": {
+    "additionalProperties": false,
+    "properties": {
+      "expected_resource_version": {
+        "minimum": 1,
+        "title": "Expected Resource Version",
+        "type": "integer"
+      },
+      "goal": {
+        "enum": [
+          "closing",
+          "zone_notice"
+        ],
+        "title": "Goal",
+        "type": "string"
+      },
+      "zone_id": {
+        "anyOf": [
+          {
+            "const": "announcement-a",
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Zone Id"
+      }
+    },
+    "required": [
+      "expected_resource_version",
+      "goal"
+    ],
+    "title": "CommandClarification",
+    "type": "object"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "chunks": [
+    {
+      "reference_id": "ref-guide-response-v1",
+      "section": "1-driver-response",
+      "topic": "user_guidance",
+      "procedure_group_id": "group-driver-guidance-v1",
+      "content": "합성 데모의 차주 이용 안내: 본인 등록 차량과 해당 차량의 이동 요청만 확인한다. 차량 이동 요청을 받은 차주는 수락 또는 거절 의사를 응답할 수 있다. 수락은 이동 의사이며 차량이 이미 이동했다는 의미는 아니다. 알림 확인은 요청을 읽었다는 기록으로 구분한다. 본인 차량이 아니거나 요청을 확인할 수 없다면 다른 차주를 추측하지 말고 소유자에게 문의한다."
+    },
+    {
+      "reference_id": "ref-guide-followup-v1",
+      "section": "2-driver-followup",
+      "topic": "user_guidance",
+      "procedure_group_id": "group-driver-guidance-v1",
+      "content": "차주 안내의 예외와 후속 확인: 주변 보행자와 통행 차량의 안전을 확인한 뒤 실제 차량 이동은 차주가 수행한다. 응답 화면의 수신이나 수락이 통로 회복·사건 해결을 보장하지 않는다. 다른 차량의 위치와 연락처를 조회하지 않는다. 본인 차량의 현재 상태를 다시 확인하고 관측이 오래됐거나 누락되면 확인 불가로 표시한다. 가상 데모는 실제 CCTV·문자 발송·차량 원격 제어가 아니다."
+    }
+  ]
+}

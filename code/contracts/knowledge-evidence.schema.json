@@ -1,0 +1,28 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "retrieval_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Retrieval Id",
+      "type": "string"
+    },
+    "reference_ids": {
+      "items": {
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 100,
+      "minItems": 1,
+      "title": "Reference Ids",
+      "type": "array"
+    }
+  },
+  "required": [
+    "retrieval_id",
+    "reference_ids"
+  ],
+  "title": "KnowledgeEvidence",
+  "type": "object"
+}

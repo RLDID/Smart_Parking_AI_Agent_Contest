@@ -1,0 +1,73 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "execution_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Execution Id",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "requested",
+        "accepted",
+        "running",
+        "succeeded",
+        "failed",
+        "held",
+        "cancelled",
+        "unknown"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "mode": {
+      "enum": [
+        "synthetic_demo",
+        "simulated",
+        "live"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "resource_version": {
+      "minimum": 1,
+      "title": "Resource Version",
+      "type": "integer"
+    },
+    "result": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Result"
+    },
+    "error": {
+      "anyOf": [
+        {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Error"
+    }
+  },
+  "required": [
+    "execution_id",
+    "status",
+    "mode",
+    "resource_version"
+  ],
+  "title": "ExecutionView",
+  "type": "object"
+}

@@ -1,0 +1,140 @@
+{
+  "SyntheticUserInput": {
+    "additionalProperties": false,
+    "properties": {
+      "mode": {
+        "default": "manual",
+        "enum": [
+          "manual",
+          "will_move",
+          "acknowledged",
+          "cannot_move",
+          "question",
+          "silent"
+        ],
+        "title": "Mode",
+        "type": "string"
+      },
+      "response_delay_ms": {
+        "default": 0,
+        "maximum": 60000,
+        "minimum": 0,
+        "title": "Response Delay Ms",
+        "type": "integer"
+      },
+      "movement_delay_ms": {
+        "default": 0,
+        "maximum": 60000,
+        "minimum": 0,
+        "title": "Movement Delay Ms",
+        "type": "integer"
+      },
+      "expected_state_version": {
+        "minimum": 0,
+        "title": "Expected State Version",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "expected_state_version"
+    ],
+    "title": "SyntheticUserInput",
+    "type": "object"
+  },
+  "SyntheticUserPolicy": {
+    "additionalProperties": false,
+    "properties": {
+      "mode": {
+        "default": "manual",
+        "enum": [
+          "manual",
+          "will_move",
+          "acknowledged",
+          "cannot_move",
+          "question",
+          "silent"
+        ],
+        "title": "Mode",
+        "type": "string"
+      },
+      "response_delay_ms": {
+        "default": 0,
+        "maximum": 60000,
+        "minimum": 0,
+        "title": "Response Delay Ms",
+        "type": "integer"
+      },
+      "movement_delay_ms": {
+        "default": 0,
+        "maximum": 60000,
+        "minimum": 0,
+        "title": "Movement Delay Ms",
+        "type": "integer"
+      }
+    },
+    "title": "SyntheticUserPolicy",
+    "type": "object"
+  },
+  "DeviceFaultInput": {
+    "additionalProperties": false,
+    "properties": {
+      "expected_state_version": {
+        "minimum": 0,
+        "title": "Expected State Version",
+        "type": "integer"
+      },
+      "channel": {
+        "enum": [
+          "visual",
+          "audio",
+          "simulated_playback",
+          "gate"
+        ],
+        "title": "Channel",
+        "type": "string"
+      },
+      "failed": {
+        "title": "Failed",
+        "type": "boolean"
+      }
+    },
+    "required": [
+      "expected_state_version",
+      "channel",
+      "failed"
+    ],
+    "title": "DeviceFaultInput",
+    "type": "object"
+  },
+  "S2ReactionInput": {
+    "additionalProperties": false,
+    "properties": {
+      "expected_state_version": {
+        "minimum": 0,
+        "title": "Expected State Version",
+        "type": "integer"
+      },
+      "mode": {
+        "enum": [
+          "brake_on_alarm",
+          "no_response"
+        ],
+        "title": "Mode",
+        "type": "string"
+      },
+      "delay_ms": {
+        "default": 0,
+        "maximum": 3000,
+        "minimum": 0,
+        "title": "Delay Ms",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "expected_state_version",
+      "mode"
+    ],
+    "title": "S2ReactionInput",
+    "type": "object"
+  }
+}

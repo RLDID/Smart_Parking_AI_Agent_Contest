@@ -1,0 +1,151 @@
+{
+  "$defs": {
+    "ApproachCandidate": {
+      "additionalProperties": false,
+      "properties": {
+        "vehicle_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Vehicle Id",
+          "type": "string"
+        },
+        "pedestrian_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Pedestrian Id",
+          "type": "string"
+        },
+        "projected_first_proximity_ms": {
+          "minimum": 0,
+          "title": "Projected First Proximity Ms",
+          "type": "number"
+        },
+        "position_uncertainty_m": {
+          "minimum": 0,
+          "title": "Position Uncertainty M",
+          "type": "number"
+        }
+      },
+      "required": [
+        "vehicle_id",
+        "pedestrian_id",
+        "projected_first_proximity_ms",
+        "position_uncertainty_m"
+      ],
+      "title": "ApproachCandidate",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "status": {
+      "enum": [
+        "risk_candidate",
+        "clear_projection",
+        "insufficient_data",
+        "unsupported_geometry"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "facility_id": {
+      "anyOf": [
+        {
+          "maxLength": 128,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Facility Id"
+    },
+    "run_id": {
+      "anyOf": [
+        {
+          "maxLength": 128,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Run Id"
+    },
+    "map_version": {
+      "anyOf": [
+        {
+          "maxLength": 128,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Map Version"
+    },
+    "map_digest": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Map Digest"
+    },
+    "evaluated_at_sim_time_ms": {
+      "minimum": 0,
+      "title": "Evaluated At Sim Time Ms",
+      "type": "integer"
+    },
+    "observation_ids": {
+      "items": {
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Observation Ids",
+      "type": "array"
+    },
+    "candidates": {
+      "items": {
+        "$ref": "#/$defs/ApproachCandidate"
+      },
+      "title": "Candidates",
+      "type": "array"
+    },
+    "reasons": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Reasons",
+      "type": "array"
+    },
+    "assumptions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Assumptions",
+      "type": "array"
+    }
+  },
+  "required": [
+    "status",
+    "facility_id",
+    "run_id",
+    "map_version",
+    "map_digest",
+    "evaluated_at_sim_time_ms",
+    "observation_ids",
+    "candidates",
+    "reasons",
+    "assumptions"
+  ],
+  "title": "ApproachAnalysis",
+  "type": "object"
+}

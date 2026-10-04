@@ -1,0 +1,18 @@
+{
+  "chunks": [
+    {
+      "reference_id": "ref-order-conditions-v1",
+      "section": "1-conditions",
+      "topic": "parking_order",
+      "procedure_group_id": "group-aisle-obstruction-v1",
+      "content": "합성 데모의 통로 차단 절차: 최신 관측으로 통행 공간 부족과 정지 유지 후보를 함께 확인한다. 공간 분석의 품질이 부족하거나 차체·위치가 누락되면 판단을 보류한다. 차량 객체와 등록 차량의 유효한 매핑 및 연락 권한을 서버에서 확인한 뒤 해당 차주에게 통로 확보를 위한 차량 이동을 요청할 수 있다. 검색 결과 자체는 위반 확정이나 이동 명령의 허가가 아니다."
+    },
+    {
+      "reference_id": "ref-order-exceptions-v1",
+      "section": "2-exceptions-followup",
+      "topic": "parking_order",
+      "procedure_group_id": "group-aisle-obstruction-v1",
+      "content": "통로 차단의 예외와 후속 확인: 차량이 주행 중이거나 정상 공간이 확보되면 차단 사건으로 단정하지 않는다. 객체 매핑이 불확실하거나 관측이 가려지면 차주를 추측하지 않고 보류한다. 차주의 알림 확인·수락 응답만으로 통로 회복이나 사건 해결을 기록하지 않는다. 후속 관측에서 실제 이동과 통과 공간 회복 유지가 확인되어야 해소 후보를 검토한다. 미응답에는 정책의 대기·재시도 한도를 적용하고 소유자 보고를 검토한다. 알림이 차량을 직접 이동시키지는 않는다."
+    }
+  ]
+}

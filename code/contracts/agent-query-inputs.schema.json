@@ -1,0 +1,173 @@
+{
+  "query": {
+    "additionalProperties": false,
+    "properties": {
+      "run_id": {
+        "maxLength": 128,
+        "minLength": 1,
+        "title": "Run Id",
+        "type": "string"
+      },
+      "goal": {
+        "enum": [
+          "current_state",
+          "my_vehicle",
+          "regulation"
+        ],
+        "title": "Goal",
+        "type": "string"
+      },
+      "query": {
+        "default": "",
+        "maxLength": 500,
+        "title": "Query",
+        "type": "string"
+      }
+    },
+    "required": [
+      "run_id",
+      "goal"
+    ],
+    "title": "AgentQuery",
+    "type": "object"
+  },
+  "live_query": {
+    "additionalProperties": false,
+    "properties": {
+      "run_id": {
+        "maxLength": 128,
+        "minLength": 1,
+        "title": "Run Id",
+        "type": "string"
+      },
+      "goal": {
+        "enum": [
+          "current_state",
+          "my_vehicle",
+          "regulation"
+        ],
+        "title": "Goal",
+        "type": "string"
+      },
+      "query": {
+        "default": "",
+        "maxLength": 500,
+        "title": "Query",
+        "type": "string"
+      },
+      "provider": {
+        "default": "auto",
+        "enum": [
+          "auto",
+          "openai",
+          "gemini"
+        ],
+        "title": "Provider",
+        "type": "string"
+      }
+    },
+    "required": [
+      "run_id",
+      "goal"
+    ],
+    "title": "LiveAgentQuery",
+    "type": "object"
+  },
+  "model_turn": {
+    "$defs": {
+      "Finish": {
+        "additionalProperties": false,
+        "properties": {
+          "status": {
+            "enum": [
+              "completed",
+              "needs_review"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "reason_code": {
+            "maxLength": 64,
+            "minLength": 1,
+            "pattern": "^[A-Z][A-Z0-9_]*$",
+            "title": "Reason Code",
+            "type": "string"
+          },
+          "answer": {
+            "default": "",
+            "maxLength": 2000,
+            "title": "Answer",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status",
+          "reason_code"
+        ],
+        "title": "Finish",
+        "type": "object"
+      },
+      "ToolCall": {
+        "additionalProperties": false,
+        "properties": {
+          "call_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Call Id",
+            "type": "string"
+          },
+          "name": {
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Name",
+            "type": "string"
+          },
+          "arguments": {
+            "additionalProperties": true,
+            "title": "Arguments",
+            "type": "object"
+          }
+        },
+        "required": [
+          "call_id",
+          "name",
+          "arguments"
+        ],
+        "title": "ToolCall",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "tool_calls": {
+        "anyOf": [
+          {
+            "items": {
+              "$ref": "#/$defs/ToolCall"
+            },
+            "maxItems": 8,
+            "type": "array"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Tool Calls"
+      },
+      "finish": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/Finish"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      }
+    },
+    "title": "ModelTurn",
+    "type": "object"
+  }
+}

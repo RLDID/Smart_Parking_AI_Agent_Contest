@@ -1,0 +1,305 @@
+{
+  "CustomerCreate": {
+    "additionalProperties": false,
+    "properties": {
+      "display_alias": {
+        "maxLength": 64,
+        "minLength": 1,
+        "title": "Display Alias",
+        "type": "string"
+      },
+      "reason": {
+        "maxLength": 200,
+        "minLength": 1,
+        "title": "Reason",
+        "type": "string"
+      }
+    },
+    "required": [
+      "display_alias",
+      "reason"
+    ],
+    "title": "CustomerCreate",
+    "type": "object"
+  },
+  "CustomerChange": {
+    "additionalProperties": false,
+    "properties": {
+      "expected_version": {
+        "minimum": 0,
+        "title": "Expected Version",
+        "type": "integer"
+      },
+      "reason": {
+        "maxLength": 200,
+        "minLength": 1,
+        "title": "Reason",
+        "type": "string"
+      },
+      "display_alias": {
+        "anyOf": [
+          {
+            "maxLength": 64,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Display Alias"
+      },
+      "active": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Active"
+      }
+    },
+    "required": [
+      "expected_version",
+      "reason"
+    ],
+    "title": "CustomerChange",
+    "type": "object"
+  },
+  "VehicleCreate": {
+    "additionalProperties": false,
+    "properties": {
+      "display_alias": {
+        "maxLength": 64,
+        "minLength": 1,
+        "title": "Display Alias",
+        "type": "string"
+      },
+      "reason": {
+        "maxLength": 200,
+        "minLength": 1,
+        "title": "Reason",
+        "type": "string"
+      }
+    },
+    "required": [
+      "display_alias",
+      "reason"
+    ],
+    "title": "VehicleCreate",
+    "type": "object"
+  },
+  "VehicleChange": {
+    "additionalProperties": false,
+    "properties": {
+      "expected_version": {
+        "minimum": 0,
+        "title": "Expected Version",
+        "type": "integer"
+      },
+      "reason": {
+        "maxLength": 200,
+        "minLength": 1,
+        "title": "Reason",
+        "type": "string"
+      },
+      "display_alias": {
+        "anyOf": [
+          {
+            "maxLength": 64,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Display Alias"
+      },
+      "active": {
+        "anyOf": [
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Active"
+      }
+    },
+    "required": [
+      "expected_version",
+      "reason"
+    ],
+    "title": "VehicleChange",
+    "type": "object"
+  },
+  "VehicleUserChange": {
+    "additionalProperties": false,
+    "properties": {
+      "expected_version": {
+        "minimum": 0,
+        "title": "Expected Version",
+        "type": "integer"
+      },
+      "user_id": {
+        "anyOf": [
+          {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "User Id"
+      },
+      "reason": {
+        "maxLength": 200,
+        "minLength": 1,
+        "title": "Reason",
+        "type": "string"
+      }
+    },
+    "required": [
+      "expected_version",
+      "reason"
+    ],
+    "title": "VehicleUserChange",
+    "type": "object"
+  },
+  "ObjectMappingChange": {
+    "additionalProperties": false,
+    "properties": {
+      "run_id": {
+        "maxLength": 128,
+        "minLength": 1,
+        "title": "Run Id",
+        "type": "string"
+      },
+      "expected_version": {
+        "minimum": 0,
+        "title": "Expected Version",
+        "type": "integer"
+      },
+      "registered_vehicle_id": {
+        "anyOf": [
+          {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Registered Vehicle Id"
+      },
+      "mapping_status": {
+        "enum": [
+          "verified",
+          "uncertain",
+          "unmapped"
+        ],
+        "title": "Mapping Status",
+        "type": "string"
+      },
+      "mapping_source": {
+        "enum": [
+          "demo_config",
+          "reviewed"
+        ],
+        "title": "Mapping Source",
+        "type": "string"
+      },
+      "reason": {
+        "maxLength": 200,
+        "minLength": 1,
+        "title": "Reason",
+        "type": "string"
+      }
+    },
+    "required": [
+      "run_id",
+      "expected_version",
+      "mapping_status",
+      "mapping_source",
+      "reason"
+    ],
+    "title": "ObjectMappingChange",
+    "type": "object"
+  },
+  "PersonMappingChange": {
+    "additionalProperties": false,
+    "properties": {
+      "run_id": {
+        "maxLength": 128,
+        "minLength": 1,
+        "title": "Run Id",
+        "type": "string"
+      },
+      "expected_version": {
+        "minimum": 0,
+        "title": "Expected Version",
+        "type": "integer"
+      },
+      "user_id": {
+        "anyOf": [
+          {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "User Id"
+      },
+      "status": {
+        "enum": [
+          "proposed",
+          "uncertain",
+          "verified",
+          "unmapped"
+        ],
+        "title": "Status",
+        "type": "string"
+      },
+      "source": {
+        "enum": [
+          "demo_config",
+          "reviewed"
+        ],
+        "title": "Source",
+        "type": "string"
+      },
+      "reason": {
+        "maxLength": 200,
+        "minLength": 1,
+        "title": "Reason",
+        "type": "string"
+      }
+    },
+    "required": [
+      "run_id",
+      "expected_version",
+      "status",
+      "source",
+      "reason"
+    ],
+    "title": "PersonMappingChange",
+    "type": "object"
+  }
+}

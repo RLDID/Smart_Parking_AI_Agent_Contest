@@ -1,0 +1,122 @@
+{
+  "schema_version": "0.1-draft",
+  "facility_id": "fac-demo-01",
+  "knowledge_release_id": "knowledge-demo-v2",
+  "index_version": "keyword-v1",
+  "mode": "synthetic_demo",
+  "documents": [
+    {
+      "document_id": "manual-parking-order",
+      "document_version": "v1",
+      "facility_id": "fac-demo-01",
+      "title": "가상 통로 질서 매뉴얼",
+      "source_ref": "synthetic-parking-order-v1",
+      "file": "parking-order.manual.json",
+      "content_digest": "sha256:f165fb9eebe2a7677c364f68f55ac38eb6ca5f98e995d35b5d3e5fd4c76ace9f",
+      "approval_status": "approved",
+      "allowed_roles": [
+        "owner",
+        "test_operator"
+      ],
+      "effective_at": "2026-09-30T00:00:00Z",
+      "retired_at": null,
+      "reviewed_conflict": false
+    },
+    {
+      "document_id": "manual-entry-announcement",
+      "document_version": "v1",
+      "facility_id": "fac-demo-01",
+      "title": "가상 입출차 및 방송 매뉴얼",
+      "source_ref": "synthetic-entry-announcement-v1",
+      "file": "entry-announcement.manual.json",
+      "content_digest": "sha256:3ab05c9ffb5a14e3495f6c2795b0a42a5b7d15838f43c762c682beaeccf5e075",
+      "approval_status": "approved",
+      "allowed_roles": [
+        "owner",
+        "test_operator"
+      ],
+      "effective_at": "2026-09-30T00:00:00Z",
+      "retired_at": null,
+      "reviewed_conflict": false
+    },
+    {
+      "document_id": "manual-user-guidance",
+      "document_version": "v1",
+      "facility_id": "fac-demo-01",
+      "title": "가상 차주 이용 안내",
+      "source_ref": "synthetic-user-guidance-v1",
+      "file": "user-guidance.manual.json",
+      "content_digest": "sha256:8778345e82be6db7913b8a7ebe2ab10ee55fe49a9a6cd23ec04efc220259d511",
+      "approval_status": "approved",
+      "allowed_roles": [
+        "owner",
+        "test_operator",
+        "driver"
+      ],
+      "effective_at": "2026-09-30T00:00:00Z",
+      "retired_at": null,
+      "reviewed_conflict": false
+    }
+  ],
+  "policy": {
+    "facility_id": "fac-demo-01",
+    "policy_version": 2,
+    "knowledge_release_id": "knowledge-demo-v2",
+    "effective_at": "2026-09-30T01:00:00Z",
+    "retired_at": null,
+    "mode": "synthetic_demo",
+    "knowledge_requirements": [
+      {
+        "tool_name": "notify_vehicle_user",
+        "purpose": "move_request",
+        "required_topics": [
+          "parking_order"
+        ]
+      },
+      {
+        "tool_name": "play_announcement",
+        "purpose": "closing_notice",
+        "required_topics": [
+          "entry_exit",
+          "announcement"
+        ]
+      },
+      {
+        "tool_name": "report_to_owner",
+        "purpose": "incident_report",
+        "required_topics": []
+      },
+      {
+        "tool_name": "create_or_update_incident",
+        "purpose": "incident_record",
+        "required_topics": []
+      },
+      {
+        "tool_name": "request_followup",
+        "purpose": "spatial_recheck",
+        "required_topics": []
+      },
+      {
+        "tool_name": "request_followup",
+        "purpose": "response_timeout",
+        "required_topics": []
+      }
+    ],
+    "execution_rules": {
+      "allowed_tools": [
+        "create_or_update_incident",
+        "notify_vehicle_user",
+        "report_to_owner",
+        "request_followup"
+      ],
+      "delivery_max_attempts": 2,
+      "contact_max_sequence": 2,
+      "contact_interval_wall_ms": 60000,
+      "response_timeout_wall_ms": 60000,
+      "overall_timeout_wall_ms": 180000,
+      "spatial_followup_sim_ms": 2000,
+      "followup_max_attempts": 3,
+      "delivery_timeout_wall_ms": 2000
+    }
+  }
+}

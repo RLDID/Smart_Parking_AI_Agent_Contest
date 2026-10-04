@@ -1,0 +1,292 @@
+{
+  "$defs": {
+    "AnalysisQuality": {
+      "additionalProperties": false,
+      "properties": {
+        "freshness": {
+          "enum": [
+            "fresh",
+            "stale",
+            "unknown"
+          ],
+          "title": "Freshness",
+          "type": "string"
+        },
+        "run_status": {
+          "enum": [
+            "running",
+            "paused",
+            "stopped",
+            "replaying"
+          ],
+          "title": "Run Status",
+          "type": "string"
+        },
+        "observation_age_sim_ms": {
+          "title": "Observation Age Sim Ms",
+          "type": "integer"
+        },
+        "received_age_wall_ms": {
+          "title": "Received Age Wall Ms",
+          "type": "integer"
+        },
+        "reasons": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Reasons",
+          "type": "array"
+        }
+      },
+      "required": [
+        "freshness",
+        "run_status",
+        "observation_age_sim_ms",
+        "received_age_wall_ms",
+        "reasons"
+      ],
+      "title": "AnalysisQuality",
+      "type": "object"
+    },
+    "SpatialMetrics": {
+      "additionalProperties": false,
+      "properties": {
+        "passage": {
+          "default": "unknown",
+          "enum": [
+            "clear",
+            "blocked",
+            "unknown"
+          ],
+          "title": "Passage",
+          "type": "string"
+        },
+        "available_clearance_m": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Available Clearance M"
+        },
+        "required_clearance_m": {
+          "exclusiveMinimum": 0,
+          "title": "Required Clearance M",
+          "type": "number"
+        },
+        "occupied_object_ids": {
+          "items": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "title": "Occupied Object Ids",
+          "type": "array"
+        },
+        "blocked_duration_ms": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Blocked Duration Ms"
+        },
+        "clear_duration_ms": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Clear Duration Ms"
+        },
+        "clearance_sustained": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Clearance Sustained"
+        },
+        "objects": {
+          "items": {
+            "$ref": "#/$defs/StopMetric"
+          },
+          "title": "Objects",
+          "type": "array"
+        }
+      },
+      "required": [
+        "required_clearance_m"
+      ],
+      "title": "SpatialMetrics",
+      "type": "object"
+    },
+    "StopMetric": {
+      "additionalProperties": false,
+      "properties": {
+        "object_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Object Id",
+          "type": "string"
+        },
+        "stop_duration_ms": {
+          "minimum": 0,
+          "title": "Stop Duration Ms",
+          "type": "integer"
+        },
+        "stationary_candidate": {
+          "title": "Stationary Candidate",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "object_id",
+        "stop_duration_ms",
+        "stationary_candidate"
+      ],
+      "title": "StopMetric",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "analysis_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Analysis Id",
+      "type": "string"
+    },
+    "analysis_version": {
+      "const": "west-straight-v1",
+      "default": "west-straight-v1",
+      "title": "Analysis Version",
+      "type": "string"
+    },
+    "facility_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Facility Id",
+      "type": "string"
+    },
+    "run_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Run Id",
+      "type": "string"
+    },
+    "map_version": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Map Version",
+      "type": "string"
+    },
+    "route_policy_version": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Route Policy Version",
+      "type": "string"
+    },
+    "observation_ids": {
+      "items": {
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Observation Ids",
+      "type": "array"
+    },
+    "state_version": {
+      "minimum": 0,
+      "title": "State Version",
+      "type": "integer"
+    },
+    "evaluated_at_sim_time_ms": {
+      "minimum": 0,
+      "title": "Evaluated At Sim Time Ms",
+      "type": "integer"
+    },
+    "analyzed_at": {
+      "title": "Analyzed At",
+      "type": "string"
+    },
+    "object_ids": {
+      "items": {
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Object Ids",
+      "type": "array"
+    },
+    "zone_ids": {
+      "items": {
+        "maxLength": 128,
+        "minLength": 1,
+        "type": "string"
+      },
+      "title": "Zone Ids",
+      "type": "array"
+    },
+    "metrics": {
+      "$ref": "#/$defs/SpatialMetrics"
+    },
+    "assumptions": {
+      "items": {
+        "type": "string"
+      },
+      "title": "Assumptions",
+      "type": "array"
+    },
+    "quality": {
+      "$ref": "#/$defs/AnalysisQuality"
+    },
+    "support_status": {
+      "enum": [
+        "supported",
+        "insufficient_data",
+        "unsupported_geometry"
+      ],
+      "title": "Support Status",
+      "type": "string"
+    }
+  },
+  "required": [
+    "analysis_id",
+    "facility_id",
+    "run_id",
+    "map_version",
+    "route_policy_version",
+    "observation_ids",
+    "state_version",
+    "evaluated_at_sim_time_ms",
+    "analyzed_at",
+    "object_ids",
+    "zone_ids",
+    "metrics",
+    "assumptions",
+    "quality",
+    "support_status"
+  ],
+  "title": "SpatialAnalysis",
+  "type": "object"
+}

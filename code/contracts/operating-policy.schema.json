@@ -1,0 +1,183 @@
+{
+  "$defs": {
+    "ExecutionRules": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed_tools": {
+          "items": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "title": "Allowed Tools",
+          "type": "array"
+        },
+        "delivery_max_attempts": {
+          "maximum": 2,
+          "minimum": 1,
+          "title": "Delivery Max Attempts",
+          "type": "integer"
+        },
+        "delivery_timeout_wall_ms": {
+          "maximum": 10000,
+          "minimum": 1,
+          "title": "Delivery Timeout Wall Ms",
+          "type": "integer"
+        },
+        "contact_max_sequence": {
+          "maximum": 2,
+          "minimum": 1,
+          "title": "Contact Max Sequence",
+          "type": "integer"
+        },
+        "contact_interval_wall_ms": {
+          "minimum": 1,
+          "title": "Contact Interval Wall Ms",
+          "type": "integer"
+        },
+        "response_timeout_wall_ms": {
+          "minimum": 1,
+          "title": "Response Timeout Wall Ms",
+          "type": "integer"
+        },
+        "overall_timeout_wall_ms": {
+          "minimum": 1,
+          "title": "Overall Timeout Wall Ms",
+          "type": "integer"
+        },
+        "spatial_followup_sim_ms": {
+          "minimum": 1,
+          "title": "Spatial Followup Sim Ms",
+          "type": "integer"
+        },
+        "followup_max_attempts": {
+          "maximum": 3,
+          "minimum": 1,
+          "title": "Followup Max Attempts",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "allowed_tools",
+        "delivery_max_attempts",
+        "delivery_timeout_wall_ms",
+        "contact_max_sequence",
+        "contact_interval_wall_ms",
+        "response_timeout_wall_ms",
+        "overall_timeout_wall_ms",
+        "spatial_followup_sim_ms",
+        "followup_max_attempts"
+      ],
+      "title": "ExecutionRules",
+      "type": "object"
+    },
+    "KnowledgeRequirement": {
+      "additionalProperties": false,
+      "properties": {
+        "tool_name": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Tool Name",
+          "type": "string"
+        },
+        "purpose": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Purpose",
+          "type": "string"
+        },
+        "required_topics": {
+          "items": {
+            "enum": [
+              "parking_order",
+              "entry_exit",
+              "announcement",
+              "user_guidance"
+            ],
+            "type": "string"
+          },
+          "title": "Required Topics",
+          "type": "array"
+        }
+      },
+      "required": [
+        "tool_name",
+        "purpose",
+        "required_topics"
+      ],
+      "title": "KnowledgeRequirement",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "facility_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Facility Id",
+      "type": "string"
+    },
+    "policy_version": {
+      "minimum": 1,
+      "title": "Policy Version",
+      "type": "integer"
+    },
+    "knowledge_release_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Knowledge Release Id",
+      "type": "string"
+    },
+    "effective_at": {
+      "title": "Effective At",
+      "type": "string"
+    },
+    "retired_at": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Retired At"
+    },
+    "knowledge_requirements": {
+      "items": {
+        "$ref": "#/$defs/KnowledgeRequirement"
+      },
+      "minItems": 1,
+      "title": "Knowledge Requirements",
+      "type": "array"
+    },
+    "mode": {
+      "const": "synthetic_demo",
+      "default": "synthetic_demo",
+      "title": "Mode",
+      "type": "string"
+    },
+    "execution_rules": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/ExecutionRules"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "facility_id",
+    "policy_version",
+    "knowledge_release_id",
+    "effective_at",
+    "knowledge_requirements"
+  ],
+  "title": "OperatingPolicy",
+  "type": "object"
+}

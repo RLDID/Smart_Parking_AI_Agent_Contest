@@ -1,0 +1,526 @@
+{
+  "facility_id": "fac-demo-01",
+  "map_version": "map-01-draft",
+  "coordinate_system": {
+    "unit": "m",
+    "origin": "southwest",
+    "x_axis": "east",
+    "y_axis": "north"
+  },
+  "bounds": {
+    "min_x": 0,
+    "min_y": 0,
+    "max_x": 40,
+    "max_y": 32
+  },
+  "zones": [
+    {
+      "zone_id": "aisle-west",
+      "type": "aisle",
+      "polygon": [
+        {
+          "x": 0,
+          "y": 18
+        },
+        {
+          "x": 8,
+          "y": 18
+        },
+        {
+          "x": 8,
+          "y": 22
+        },
+        {
+          "x": 0,
+          "y": 22
+        }
+      ]
+    },
+    {
+      "zone_id": "aisle-central",
+      "type": "aisle",
+      "polygon": [
+        {
+          "x": 8,
+          "y": 16
+        },
+        {
+          "x": 32,
+          "y": 16
+        },
+        {
+          "x": 32,
+          "y": 24
+        },
+        {
+          "x": 8,
+          "y": 24
+        }
+      ]
+    },
+    {
+      "zone_id": "bay-south-pocket",
+      "type": "parking_bay",
+      "polygon": [
+        {
+          "x": 2.5,
+          "y": 17.5
+        },
+        {
+          "x": 5.5,
+          "y": 17.5
+        },
+        {
+          "x": 5.5,
+          "y": 18
+        },
+        {
+          "x": 2.5,
+          "y": 18
+        }
+      ]
+    },
+    {
+      "zone_id": "aisle-north",
+      "type": "aisle",
+      "polygon": [
+        {
+          "x": 2.5,
+          "y": 22
+        },
+        {
+          "x": 5.5,
+          "y": 22
+        },
+        {
+          "x": 5.5,
+          "y": 32
+        },
+        {
+          "x": 2.5,
+          "y": 32
+        }
+      ]
+    },
+    {
+      "zone_id": "aisle-east",
+      "type": "aisle",
+      "polygon": [
+        {
+          "x": 28,
+          "y": 4
+        },
+        {
+          "x": 34,
+          "y": 4
+        },
+        {
+          "x": 34,
+          "y": 24
+        },
+        {
+          "x": 28,
+          "y": 24
+        }
+      ]
+    },
+    {
+      "zone_id": "entry",
+      "type": "entrance",
+      "polygon": [
+        {
+          "x": 28,
+          "y": 0
+        },
+        {
+          "x": 31,
+          "y": 0
+        },
+        {
+          "x": 31,
+          "y": 6
+        },
+        {
+          "x": 28,
+          "y": 6
+        }
+      ]
+    },
+    {
+      "zone_id": "exit",
+      "type": "exit",
+      "polygon": [
+        {
+          "x": 31,
+          "y": 0
+        },
+        {
+          "x": 34,
+          "y": 0
+        },
+        {
+          "x": 34,
+          "y": 6
+        },
+        {
+          "x": 31,
+          "y": 6
+        }
+      ]
+    },
+    {
+      "zone_id": "walkway",
+      "type": "pedestrian",
+      "polygon": [
+        {
+          "x": 20,
+          "y": 10
+        },
+        {
+          "x": 24,
+          "y": 10
+        },
+        {
+          "x": 24,
+          "y": 30
+        },
+        {
+          "x": 20,
+          "y": 30
+        }
+      ]
+    },
+    {
+      "zone_id": "announcement-a",
+      "type": "announcement",
+      "polygon": [
+        {
+          "x": 0,
+          "y": 16
+        },
+        {
+          "x": 20,
+          "y": 16
+        },
+        {
+          "x": 20,
+          "y": 32
+        },
+        {
+          "x": 0,
+          "y": 32
+        }
+      ]
+    },
+    {
+      "zone_id": "announcement-b",
+      "type": "announcement",
+      "polygon": [
+        {
+          "x": 20,
+          "y": 0
+        },
+        {
+          "x": 40,
+          "y": 0
+        },
+        {
+          "x": 40,
+          "y": 32
+        },
+        {
+          "x": 20,
+          "y": 32
+        }
+      ]
+    },
+    {
+      "zone_id": "B01",
+      "type": "parking_bay",
+      "polygon": [
+        {
+          "x": 8,
+          "y": 24
+        },
+        {
+          "x": 11,
+          "y": 24
+        },
+        {
+          "x": 11,
+          "y": 29
+        },
+        {
+          "x": 8,
+          "y": 29
+        }
+      ]
+    },
+    {
+      "zone_id": "B02",
+      "type": "parking_bay",
+      "polygon": [
+        {
+          "x": 11,
+          "y": 24
+        },
+        {
+          "x": 14,
+          "y": 24
+        },
+        {
+          "x": 14,
+          "y": 29
+        },
+        {
+          "x": 11,
+          "y": 29
+        }
+      ]
+    },
+    {
+      "zone_id": "B03",
+      "type": "parking_bay",
+      "polygon": [
+        {
+          "x": 14,
+          "y": 24
+        },
+        {
+          "x": 17,
+          "y": 24
+        },
+        {
+          "x": 17,
+          "y": 29
+        },
+        {
+          "x": 14,
+          "y": 29
+        }
+      ]
+    },
+    {
+      "zone_id": "B04",
+      "type": "parking_bay",
+      "polygon": [
+        {
+          "x": 17,
+          "y": 24
+        },
+        {
+          "x": 20,
+          "y": 24
+        },
+        {
+          "x": 20,
+          "y": 29
+        },
+        {
+          "x": 17,
+          "y": 29
+        }
+      ]
+    },
+    {
+      "zone_id": "B05",
+      "type": "parking_bay",
+      "polygon": [
+        {
+          "x": 20,
+          "y": 24
+        },
+        {
+          "x": 23,
+          "y": 24
+        },
+        {
+          "x": 23,
+          "y": 29
+        },
+        {
+          "x": 20,
+          "y": 29
+        }
+      ]
+    },
+    {
+      "zone_id": "B06",
+      "type": "parking_bay",
+      "polygon": [
+        {
+          "x": 23,
+          "y": 24
+        },
+        {
+          "x": 26,
+          "y": 24
+        },
+        {
+          "x": 26,
+          "y": 29
+        },
+        {
+          "x": 23,
+          "y": 29
+        }
+      ]
+    }
+  ],
+  "parking_bays": [
+    {
+      "zone_id": "B01"
+    },
+    {
+      "zone_id": "B02"
+    },
+    {
+      "zone_id": "B03"
+    },
+    {
+      "zone_id": "B04"
+    },
+    {
+      "zone_id": "B05"
+    },
+    {
+      "zone_id": "B06"
+    }
+  ],
+  "lanes": [
+    {
+      "zone_id": "aisle-west",
+      "connected_to": [
+        "aisle-central",
+        "aisle-north"
+      ]
+    },
+    {
+      "zone_id": "aisle-north",
+      "connected_to": [
+        "portal-north"
+      ],
+      "direction": "north"
+    },
+    {
+      "zone_id": "aisle-central",
+      "connected_to": [
+        "aisle-west",
+        "aisle-east"
+      ]
+    },
+    {
+      "zone_id": "aisle-east",
+      "connected_to": [
+        "aisle-central",
+        "entry",
+        "exit"
+      ]
+    }
+  ],
+  "gates": [
+    {
+      "gate_id": "gate-in-01",
+      "zone_id": "entry",
+      "segment": [
+        {
+          "x": 28,
+          "y": 3
+        },
+        {
+          "x": 31,
+          "y": 3
+        }
+      ]
+    },
+    {
+      "gate_id": "gate-out-01",
+      "zone_id": "exit",
+      "segment": [
+        {
+          "x": 31,
+          "y": 3
+        },
+        {
+          "x": 34,
+          "y": 3
+        }
+      ]
+    }
+  ],
+  "announcement_zones": [
+    "announcement-a",
+    "announcement-b"
+  ],
+  "portals": [
+    {
+      "portal_id": "portal-west",
+      "boundary_segment": [
+        {
+          "x": 0,
+          "y": 18
+        },
+        {
+          "x": 0,
+          "y": 22
+        }
+      ],
+      "allowed_object_types": [
+        "vehicle"
+      ],
+      "direction": "both"
+    },
+    {
+      "portal_id": "portal-north",
+      "boundary_segment": [
+        {
+          "x": 2.5,
+          "y": 32
+        },
+        {
+          "x": 5.5,
+          "y": 32
+        }
+      ],
+      "allowed_object_types": [
+        "vehicle"
+      ],
+      "direction": "exit"
+    },
+    {
+      "portal_id": "portal-entry",
+      "boundary_segment": [
+        {
+          "x": 28,
+          "y": 0
+        },
+        {
+          "x": 31,
+          "y": 0
+        }
+      ],
+      "allowed_object_types": [
+        "vehicle"
+      ],
+      "direction": "entry"
+    },
+    {
+      "portal_id": "portal-exit",
+      "boundary_segment": [
+        {
+          "x": 31,
+          "y": 0
+        },
+        {
+          "x": 34,
+          "y": 0
+        }
+      ],
+      "allowed_object_types": [
+        "vehicle"
+      ],
+      "direction": "exit"
+    }
+  ],
+  "route_policy_version": "route-foundation-v1"
+}

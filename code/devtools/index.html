@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>개발 검증용 · 주차장 관측 콘솔</title>
+  <style>
+    :root{color-scheme:light;font-family:system-ui,sans-serif;background:#f3f5f7;color:#142633}
+    *{box-sizing:border-box}body{margin:0}header{background:#142633;color:white;padding:22px 5vw}
+    header p{color:#d6e2ea;margin-bottom:0}.badge{display:inline-block;padding:5px 10px;border-radius:5px;background:#ffe19b;color:#523900;font-size:13px;font-weight:700}
+    h1{font-size:24px;margin:12px 0}main{max-width:1300px;margin:auto;padding:24px;display:grid;grid-template-columns:minmax(320px,2fr) minmax(280px,1fr);gap:20px}
+    section{background:white;padding:20px;border:1px solid #d7dfe5;border-radius:10px}h2{font-size:17px;margin-top:0}
+    label{display:block;font-size:14px;margin:12px 0 5px}input,select,button{font:inherit;border:1px solid #aab8c2;border-radius:6px;padding:9px;max-width:100%}
+    button{background:#174e6b;color:white;cursor:pointer}button:disabled{opacity:.4;cursor:default}.buttons{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}
+    input,select{width:100%}.status{padding:10px;background:#eef3f6;border-radius:5px;margin:12px 0}#connection[data-status=error]{color:#9d2500;background:#fff0e8}
+    svg{width:100%;height:auto;background:#fafcfd;border:1px solid #d7dfe5;border-radius:6px}dl{display:grid;grid-template-columns:100px 1fr;font-size:13px;gap:9px}dd{margin:0;overflow-wrap:anywhere}
+    small{display:block;color:#536772;line-height:1.6}#message{min-height:2.5em;color:#9d2500;white-space:pre-wrap;font-size:14px}pre{max-height:260px;overflow:auto;font-size:11px;background:#f5f7f8;padding:10px}footer{padding:10px 24px 30px;text-align:center;color:#536772;font-size:13px}
+    #analysis-values{font-size:13px;line-height:1.6;padding-left:20px}.analysis{border-top:1px solid #d7dfe5;margin-top:20px;padding-top:20px}
+    @media(max-width:780px){main{grid-template-columns:minmax(0,1fr);padding:14px}header{padding:18px}h1{font-size:21px}}
+  </style>
+</head>
+<body>
+<header><span class="badge">개발 검증용 · 정식 프론트와 별도</span><h1>주차장 관측 콘솔</h1><p>가상 관측 · 운영 근거 · 수동 업무 · 웹 메시지함 · 모델 조회</p><p><a style="color:white" href="/devtools/operations">시나리오·자율 업무 시험</a> · <a style="color:white" href="/devtools/relationships">차량·고객 관계 관리</a></p></header>
+<main>
+  <section><h2>서버 관측 지도</h2><div id="connection" class="status" data-status="error" role="status">로그인 후 연결할 수 있습니다.</div>
+    <svg id="map" viewBox="-1 -1 42 34" role="img" aria-label="가상 주차장 관측 지도"><g id="geometry" transform="translate(0,32) scale(1,-1)"></g></svg>
+    <small>40 × 32m · 남서쪽 원점 · 차량은 파랑, 보행자는 주황. 현재 관측만 표시합니다. AI 사건 판정 화면이 아닙니다.</small>
+    <p id="view-scope" class="status">인증 후 표시 범위를 확인합니다.</p><small id="vehicles"></small>
+    <dl><dt>실행 상태</dt><dd id="run-status">준비 전</dd><dt>run ID</dt><dd id="run-id">—</dd><dt>적용 sim 시간</dt><dd id="sim-time">—</dd><dt>관측 sim 시간</dt><dd id="obs-time">—</dd><dt>관측 수신 시각</dt><dd id="received">—</dd><dt>관측 버전</dt><dd id="version">—</dd></dl>
+    <small>관측 범위: <span id="coverage">—</span>. partial/unavailable 또는 오래된 관측은 빈 공간을 뜻하지 않습니다.</small>
+    <details><summary>관측 JSON 확인</summary><pre id="snapshot">관측 없음</pre></details>
+    <div class="analysis"><h2>서측 통로 분석</h2><div id="analysis-status" class="status" role="status">관측 연결 대기</div><ul id="analysis-values"></ul>
+      <small>서버 관측으로 동서 직선 통과 공간을 계산합니다. 수동 후속 확인에서 최신 관측의 3초 통로 회복을 검사하며 차주 응답과 사건 해결을 구분합니다.</small>
+      <details><summary>분석 근거 JSON</summary><pre id="analysis-json">분석 없음</pre></details></div>
+  </section>
+  <section><h2>로컬 시험 제어</h2><small>공개된 가상 계정 전용입니다. test_operator만 실행을 조작할 수 있고 owner는 조회만 가능합니다.</small>
+    <form id="login-form"><label for="username">가상 계정</label><select id="username"><option value="demo-operator">시험 운영자 · demo-operator</option><option value="demo-owner">소유자 · demo-owner</option><option value="demo-driver">B 차주 · demo-driver</option><option value="demo-driver-2">A 차주 · demo-driver-2</option></select>
+    <label for="password">가상 비밀번호</label><input id="password" type="password" value="parking-demo-only" autocomplete="off"><small>공개 시험값: parking-demo-only · 실제 계정 사용 금지</small>
+    <div class="buttons"><button type="submit">로그인</button><button id="logout" type="button" disabled>로그아웃</button></div></form>
+    <div id="identity" class="status">인증되지 않음</div>
+    <div class="buttons"><button id="new-run" data-control disabled>새 실행</button><button id="start" data-control disabled>시작</button><button id="pause" data-control disabled>일시정지</button><button id="step" data-control disabled>100ms 진행</button><button id="move" data-control disabled>가상 차주 이동 요청</button></div>
+    <small style="margin-top:14px">이동 요청은 가상 환경에 주는 명시적 시험 입력입니다. 알림이나 차주 응답은 차량을 움직이지 않습니다. 일시정지 중 입력 후 시작을 누르면 B 차량이 북측 차로로 전진합니다.</small>
+    <label for="observation-mode">다음 관측 시험 입력</label><select id="observation-mode"><option value="normal">정상 관측</option><option value="occluded_vehicle">B 차량 가림</option><option value="missing_vehicle">B 차량 누락</option><option value="delayed">관측 1200ms 지연</option><option value="unavailable">전체 관측 불가</option></select>
+    <div class="buttons"><button id="apply-observation" data-control disabled>관측 입력 적용 + 100ms</button></div>
+    <small>일시정지 상태에서 적용합니다. 다음 200ms 관측부터 반영되므로 필요하면 한 단계를 더 진행하세요. 내부 차량은 그대로 움직이며 관측 품질만 바뀝니다. 변경 시 유지시간 근거를 새로 쌓습니다.</small>
+    <p id="message" role="alert"></p>
+    <div class="analysis"><h2>수동 S1-a 업무 시험</h2>
+      <small>시험 운영자: 시작 후 5초 정지 관측을 쌓고 일시정지 → 근거 검색·이동 요청 → B 차주 로그인·응답 → 시험 운영자로 별도 이동 입력 → 3초 통로 회복 관측 후 일시정지·후속 확인. 실제 LLM 판단은 아닙니다.</small>
+      <div class="buttons"><button id="manual-notify" data-manual disabled>근거 검색 · 이동 요청</button><button id="manual-recheck" data-manual disabled>후속 관측 확인</button><button id="manual-timeout" data-manual disabled>응답 · 기한 검토</button><button id="refresh-business" disabled>업무 새로고침</button></div>
+      <p id="business-status" class="status" role="status">인증 후 업무 연결</p><ul id="incident-list"></ul>
+      <details><summary>수동 실행·실제 검색 근거</summary><pre id="manual-result">실행 없음</pre></details>
+    </div>
+  </section>
+  <section><h2>내 웹 메시지함</h2><small>본인에게 전달된 가상 메시지만 표시합니다. 화면 수신을 별도 기록하며 응답은 차량 이동·사건 해결과 구분합니다.</small><div id="notification-list">인증 후 조회</div></section>
+  <section><h2>Agent 조회 시험</h2><small>모의 조회와 실제 API 비교를 선택합니다. 실제 조회는 가상 실행을 일시정지한 뒤 사용하며, 등록된 모델의 호출에는 비용이 발생합니다. 차주는 본인 자료와 허용 규정만 조회합니다. 업무 Agent와 가상 장치는 별도 운영 시험 콘솔에서 확인합니다.</small>
+    <form id="agent-form"><label for="agent-provider">조회 모델</label><select id="agent-provider"><option value="mock">모의 조회 · 비용 없음</option><option value="auto">실제 자동 · Luna 기본 / Gemini 예비</option><option value="openai">OpenAI · 제공자 지정 비교</option><option value="gemini">Gemini · 제공자 지정 비교</option></select>
+      <label for="agent-goal">조회 목적</label><select id="agent-goal"><option value="current_state">현재 관측</option><option value="my_vehicle">내 차량</option><option value="regulation">허용 운영 규정</option></select>
+      <label for="agent-query">규정 검색 질문</label><input id="agent-query" maxlength="500" value="이동 요청을 받으면 어떻게 응답하나요?">
+      <div class="buttons"><button id="agent-submit" type="submit" disabled>선택 모델로 조회 실행</button><button id="refresh-models" type="button" disabled>제공자 · 비용 확인</button></div></form>
+    <pre id="model-status">인증 후 제공자 · 비용 확인</pre>
+    <pre id="agent-result">실행 없음</pre>
+  </section>
+</main><footer>임시 코드: code/devtools · 정식 code/frontend와 빌드·컴포넌트 의존성 없음</footer>
+<script src="/devtools/app.js" defer></script>
+</body></html>

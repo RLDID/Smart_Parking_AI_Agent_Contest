@@ -1,0 +1,108 @@
+{
+  "snapshot": {
+    "schema_version": "0.1-draft",
+    "facility_id": "fac-demo-01",
+    "run_id": "run-example-001",
+    "observation_id": "obs-example-001",
+    "source": "simulator",
+    "map_version": "map-01-draft",
+    "state_version": 0,
+    "sim_time_ms": 0,
+    "observed_at": "2026-09-30T00:00:00Z",
+    "received_at": "2026-09-30T00:00:00Z",
+    "coverage": "complete",
+    "objects": [
+      {
+        "object_id": "obj-car-01",
+        "object_type": "vehicle",
+        "position": {
+          "x": 9.5,
+          "y": 26.5
+        },
+        "size": {
+          "length_m": 4.6,
+          "width_m": 1.8
+        },
+        "heading_deg": 90.0,
+        "quality": {
+          "visibility": "visible",
+          "uncertainty_m": 0.0,
+          "missing_fields": []
+        }
+      },
+      {
+        "object_id": "obj-car-02",
+        "object_type": "vehicle",
+        "position": {
+          "x": 4.0,
+          "y": 20.0
+        },
+        "size": {
+          "length_m": 4.6,
+          "width_m": 1.8
+        },
+        "heading_deg": 90.0,
+        "quality": {
+          "visibility": "visible",
+          "uncertainty_m": 0.0,
+          "missing_fields": []
+        }
+      },
+      {
+        "object_id": "obj-person-01",
+        "object_type": "pedestrian",
+        "position": {
+          "x": 22.0,
+          "y": 12.0
+        },
+        "size": {
+          "length_m": 0.6,
+          "width_m": 0.6
+        },
+        "heading_deg": 90.0,
+        "quality": {
+          "visibility": "visible",
+          "uncertainty_m": 0.0,
+          "missing_fields": []
+        }
+      }
+    ],
+    "devices": [
+      {
+        "device_id": "gate-in-01",
+        "type": "gate",
+        "resource_version": 0,
+        "entry_policy": "allow",
+        "physical_state": "open",
+        "obstacle_detected": null,
+        "fault_code": null,
+        "observed_at": "2026-09-30T00:00:00Z",
+        "quality": {
+          "visibility": "visible",
+          "uncertainty_m": 0.0,
+          "missing_fields": []
+        }
+      },
+      {
+        "device_id": "gate-out-01",
+        "type": "gate",
+        "resource_version": 0,
+        "entry_policy": "allow",
+        "physical_state": "open",
+        "obstacle_detected": null,
+        "fault_code": null,
+        "observed_at": "2026-09-30T00:00:00Z",
+        "quality": {
+          "visibility": "visible",
+          "uncertainty_m": 0.0,
+          "missing_fields": []
+        }
+      }
+    ],
+    "object_events": []
+  },
+  "run_status": "paused",
+  "recovery_required": false,
+  "applied_state_version": 0,
+  "applied_sim_time_ms": 0
+}

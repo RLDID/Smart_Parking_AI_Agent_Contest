@@ -1,0 +1,16 @@
+{
+  "version": "sim0-operation-test-v1",
+  "mode": "synthetic_demo",
+  "note": "가상 실행 시험 값. 실제 주차 허용·접촉·안전 운영 기준은 별도 승인한다.",
+  "stationary_ms": 2000,
+  "clearance_ms": 2000,
+  "exit": {"side_clearance_m": 0.05, "max_observation_uncertainty_m": 0.1, "freshness_ms": 1000, "max_discretization_error_m": 0.02},
+  "parking": {
+    "geometry": {"tolerance_m": 0.1, "max_uncertainty_m": 0.2, "freshness_ms": 1000},
+    "stationary_ms": 2000, "position_tolerance_m": 0.1, "heading_tolerance_deg": 2,
+    "maneuver_grace_ms": 3000, "intrusion_hold_ms": 1500,
+    "max_sample_gap_ms": 400, "history_limit": 64
+  },
+  "approach": {"horizon_ms": 2000, "margin_m": 0.5, "freshness_ms": 1000, "max_sample_gap_ms": 500,
+    "max_uncertainty_m": 0.2, "max_speed_mps": 10, "max_heading_change_deg": 5}
+}

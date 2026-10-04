@@ -1,0 +1,25 @@
+/* Interaction additions only; established desktop/mobile visual tokens stay in their stylesheets. */
+.field-error { color: #a23b32; }
+.field [aria-invalid=true] { border-color: #b85246; }
+.field small { line-height: 1.5; }
+.section-gap { margin-top: 24px; }
+.detail-grid > .stack { align-content: start; }
+.preview-info-body { max-height: min(80dvh, 650px); overflow-y: auto; }
+.preview-info-body > label { display: grid; gap: 6px; margin-top: 12px; }
+.preview-info-body > label select { width: 100%; max-width: none; }
+.map-car { cursor: pointer; }
+.map-car:focus-visible, .map-hotspot:focus-visible { outline: 3px solid var(--action-ink); outline-offset: 4px; }
+.car-hit { pointer-events: all; }
+.map-selection { border-top: 1px solid var(--line); }
+.map-selection .facts { margin-top: 12px; }
+.notice .btn { display: flex; margin-top: 12px; }
+.login-choice form > .btn { justify-content: center; min-height: 48px; }
+.login-choice h2 { margin-bottom: 24px; }
+main:focus { outline: none; }
+@media (max-width: 700px) {
+  .field-error { font-size: .875rem; }
+  .preview-info-body > label select { min-height: 48px; font-size: 1rem; }
+  .section-gap { margin-top: 16px; }
+  .login-choice form > .btn { min-height: 48px; font-size: 1rem; }
+  .map-selection .facts { grid-template-columns: 1fr; }
+}

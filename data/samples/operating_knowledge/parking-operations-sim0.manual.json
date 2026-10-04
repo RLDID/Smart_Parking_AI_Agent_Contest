@@ -1,0 +1,10 @@
+{
+  "chunks": [
+    {"reference_id":"ref-order-conditions-v2","section":"1-conditions","topic":"parking_order","procedure_group_id":"group-aisle-obstruction-v2","content":"합성 데모의 통로 차단 절차: 최신 공개 관측에서 통행 공간 부족과 정지 유지 후보를 함께 확인한다. 관측 품질이 부족하면 보류한다. 유효한 관측 차량·등록 차량 매핑과 유일한 차주 연락 권한을 서버에서 확인한 뒤 이동을 요청한다. 검색 결과는 위반 확정이나 차량 직접 제어 권한이 아니다."},
+    {"reference_id":"ref-order-followup-v2","section":"2-followup","topic":"parking_order","procedure_group_id":"group-aisle-obstruction-v2","content":"차주의 수신 확인과 이동하겠다는 응답은 이동 완료가 아니다. 현재 관측의 통과 공간이 연속으로 회복된 뒤에만 해결을 검토한다. 미응답은 대기·연락 횟수·전체 기한을 제한한다. 이동 불가 또는 질문은 반복 연락 대신 소유자에게 보고한다. 가림·매핑 불확실은 차주를 추측하지 않고 보류한다."},
+    {"reference_id":"ref-exit-conditions-v2","section":"3-exit-blocked","topic":"parking_order","procedure_group_id":"group-exit-blocked-v2","content":"합성 출차 방해 이중주차 절차: 공개 지도와 관측에서 지원되는 고정 B01 출차 후보에 다른 정지 차량의 차체가 겹치는지 확인한다. 한 후보가 막혔다고 모든 출차 경로가 불가능하다고 단정하지 않는다. 실제 차주 연결과 연락 권한을 확인한 방해 차량에만 이동 요청을 보낸다. 차주 신고는 자기 차량 권한을 확인하며 공간 검사를 대신하지 않는다."},
+    {"reference_id":"ref-exit-followup-v2","section":"4-exit-followup","topic":"parking_order","procedure_group_id":"group-exit-blocked-v2","content":"출차 방해 후속 확인: 연락·수신·응답과 차량 이동을 구분한다. 새 관측에서 방해 차량 이동 뒤 고정 출차 후보 공간이 지속 회복되어야 해소를 검토한다. 출차 차량의 가상 운전은 환경 행동 정책이며 Agent가 위치나 경로를 직접 바꾸지 않는다. 출차 후보가 지원 범위를 벗어나거나 관측이 부족하면 보류·소유자 보고로 끝낸다."},
+    {"reference_id":"ref-bay-conditions-v2","section":"5-bay-intrusion","topic":"parking_order","procedure_group_id":"group-bay-intrusion-v2","content":"합성 주차면 침범 재주차 절차: B01 측정 범위의 공개 차체 외곽과 인접 주차면 사용 공간을 검사한다. 기울어졌다는 이유만으로 위반을 단정하지 않는다. 명시된 가상 시험 허용치·조작 유예·정지 및 침범 유지 조건과 인접 사용 공간의 지속 영향이 함께 확인될 때만 등록 차주에게 재주차를 요청한다. 실제 시설의 허용 기준은 별도 승인 대상이다."},
+    {"reference_id":"ref-bay-followup-v2","section":"6-bay-followup","topic":"parking_order","procedure_group_id":"group-bay-intrusion-v2","content":"주차면 침범의 후속 확인: 알림 응답은 재주차 완료가 아니다. 가상 운전자 반응과 충돌·경계 검사를 거친 조작 뒤 새 공개 관측에서 차체가 허용 범위로 지속 회복되어야 해소를 검토한다. 이동 중이거나 불확실한 위치에서는 반복 재주차 요청을 보내지 않는다. 이동 불가·질문·기한 초과는 횟수 한도 안에서 소유자에게 보고한다."}
+  ]
+}

@@ -1,0 +1,378 @@
+{
+  "$defs": {
+    "GateObservation": {
+      "additionalProperties": false,
+      "properties": {
+        "device_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Device Id",
+          "type": "string"
+        },
+        "type": {
+          "const": "gate",
+          "title": "Type",
+          "type": "string"
+        },
+        "resource_version": {
+          "minimum": 0,
+          "title": "Resource Version",
+          "type": "integer"
+        },
+        "entry_policy": {
+          "enum": [
+            "allow",
+            "deny"
+          ],
+          "title": "Entry Policy",
+          "type": "string"
+        },
+        "physical_state": {
+          "enum": [
+            "open",
+            "closed",
+            "opening",
+            "closing",
+            "stopped",
+            "unknown"
+          ],
+          "title": "Physical State",
+          "type": "string"
+        },
+        "obstacle_detected": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Obstacle Detected"
+        },
+        "fault_code": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Fault Code"
+        },
+        "observed_at": {
+          "title": "Observed At",
+          "type": "string"
+        },
+        "quality": {
+          "$ref": "#/$defs/Quality"
+        }
+      },
+      "required": [
+        "device_id",
+        "type",
+        "resource_version",
+        "entry_policy",
+        "physical_state",
+        "obstacle_detected",
+        "fault_code",
+        "observed_at",
+        "quality"
+      ],
+      "title": "GateObservation",
+      "type": "object"
+    },
+    "ObjectEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "object_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Object Id",
+          "type": "string"
+        },
+        "event_type": {
+          "enum": [
+            "entered",
+            "exited"
+          ],
+          "title": "Event Type",
+          "type": "string"
+        },
+        "portal_id": {
+          "maxLength": 128,
+          "minLength": 1,
+          "title": "Portal Id",
+          "type": "string"
+        },
+        "sim_time_ms": {
+          "minimum": 0,
+          "title": "Sim Time Ms",
+          "type": "integer"
+        },
+        "observed_at": {
+          "title": "Observed At",
+          "type": "string"
+        },
+        "quality": {
+          "$ref": "#/$defs/Quality"
+        }
+      },
+      "required": [
+        "object_id",
+        "event_type",
+        "portal_id",
+        "sim_time_ms",
+        "observed_at",
+        "quality"
+      ],
+      "title": "ObjectEvent",
+      "type": "object"
+    },
+    "ObservedObject": {
+      "additionalProperties": false,
+      "properties": {
+        "object_id": {
+          "minLength": 1,
+          "title": "Object Id",
+          "type": "string"
+        },
+        "object_type": {
+          "enum": [
+            "vehicle",
+            "pedestrian",
+            "unknown"
+          ],
+          "title": "Object Type",
+          "type": "string"
+        },
+        "position": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Position"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "size": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Size"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "heading_deg": {
+          "anyOf": [
+            {
+              "exclusiveMaximum": 360,
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Heading Deg"
+        },
+        "quality": {
+          "$ref": "#/$defs/Quality"
+        }
+      },
+      "required": [
+        "object_id",
+        "object_type",
+        "position",
+        "size",
+        "heading_deg",
+        "quality"
+      ],
+      "title": "ObservedObject",
+      "type": "object"
+    },
+    "Position": {
+      "additionalProperties": false,
+      "properties": {
+        "x": {
+          "title": "X",
+          "type": "number"
+        },
+        "y": {
+          "title": "Y",
+          "type": "number"
+        }
+      },
+      "required": [
+        "x",
+        "y"
+      ],
+      "title": "Position",
+      "type": "object"
+    },
+    "Quality": {
+      "additionalProperties": false,
+      "properties": {
+        "visibility": {
+          "default": "visible",
+          "enum": [
+            "visible",
+            "occluded",
+            "missing"
+          ],
+          "title": "Visibility",
+          "type": "string"
+        },
+        "uncertainty_m": {
+          "anyOf": [
+            {
+              "minimum": 0,
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": 0,
+          "title": "Uncertainty M"
+        },
+        "missing_fields": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Missing Fields",
+          "type": "array"
+        }
+      },
+      "title": "Quality",
+      "type": "object"
+    },
+    "Size": {
+      "additionalProperties": false,
+      "properties": {
+        "length_m": {
+          "exclusiveMinimum": 0,
+          "title": "Length M",
+          "type": "number"
+        },
+        "width_m": {
+          "exclusiveMinimum": 0,
+          "title": "Width M",
+          "type": "number"
+        }
+      },
+      "required": [
+        "length_m",
+        "width_m"
+      ],
+      "title": "Size",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "0.1-draft",
+      "default": "0.1-draft",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "facility_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Facility Id",
+      "type": "string"
+    },
+    "run_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Run Id",
+      "type": "string"
+    },
+    "observation_id": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Observation Id",
+      "type": "string"
+    },
+    "source": {
+      "const": "simulator",
+      "default": "simulator",
+      "title": "Source",
+      "type": "string"
+    },
+    "map_version": {
+      "maxLength": 128,
+      "minLength": 1,
+      "title": "Map Version",
+      "type": "string"
+    },
+    "state_version": {
+      "minimum": 0,
+      "title": "State Version",
+      "type": "integer"
+    },
+    "sim_time_ms": {
+      "minimum": 0,
+      "title": "Sim Time Ms",
+      "type": "integer"
+    },
+    "observed_at": {
+      "title": "Observed At",
+      "type": "string"
+    },
+    "received_at": {
+      "title": "Received At",
+      "type": "string"
+    },
+    "coverage": {
+      "enum": [
+        "complete",
+        "partial",
+        "unavailable"
+      ],
+      "title": "Coverage",
+      "type": "string"
+    },
+    "objects": {
+      "items": {
+        "$ref": "#/$defs/ObservedObject"
+      },
+      "title": "Objects",
+      "type": "array"
+    },
+    "devices": {
+      "items": {
+        "$ref": "#/$defs/GateObservation"
+      },
+      "title": "Devices",
+      "type": "array"
+    },
+    "object_events": {
+      "items": {
+        "$ref": "#/$defs/ObjectEvent"
+      },
+      "title": "Object Events",
+      "type": "array"
+    }
+  },
+  "required": [
+    "facility_id",
+    "run_id",
+    "observation_id",
+    "map_version",
+    "state_version",
+    "sim_time_ms",
+    "observed_at",
+    "received_at",
+    "coverage",
+    "objects",
+    "devices"
+  ],
+  "title": "Observation",
+  "type": "object"
+}

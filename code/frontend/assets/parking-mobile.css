@@ -1,0 +1,161 @@
+/* Mobile-only presentation. Desktop typography and glass composition remain in their original stylesheets. */
+.stat .policy-value { font-size: 25px; }
+.followup-note { font-size: 12px; }
+.incident-summary, .request-copy { font-size: 13px; }
+.request-copy { overflow-wrap: anywhere; }
+.request-target { font-size: 11px; }
+.map-scroll-hint { display: none; }
+@media (max-width: 700px) {
+  body { font-size: 1rem; line-height: 1.5; }
+  h1 { font-size: 1.5rem; line-height: 1.35; letter-spacing: -.03em; }
+  h2, .card-head h2 { font-size: 1.125rem; line-height: 1.4; }
+  h3 { font-size: 1rem; }
+  p, strong, small, label, .badge { overflow-wrap: anywhere; }
+  .layout, .driver .layout {
+    width: 100%; max-width: none; margin: 0;
+    min-height: 100dvh; border: 0; border-radius: 0; box-shadow: none;
+  }
+  .workspace { margin: 0; border-radius: 0; }
+  .layout:has(.sidebar.menu-open) { z-index: 20; }
+  .main, .driver .main {
+    max-width: none;
+    padding: 24px max(16px, env(safe-area-inset-right)) 32px max(16px, env(safe-area-inset-left));
+  }
+  .driver .main { padding-bottom: calc(104px + env(safe-area-inset-bottom)); }
+  .topbar {
+    padding: 12px max(16px, env(safe-area-inset-right)) 12px max(16px, env(safe-area-inset-left));
+    border-radius: 0; gap: 8px; align-items: center;
+  }
+  .facility { flex: 1 1 auto; min-width: 0; }
+  .facility strong { font-size: .875rem; }
+  .top-actions { flex-wrap: wrap; }
+  .top-actions .btn { font-size: .875rem; min-height: 3rem; padding: 10px 12px; }
+  .page-head { margin-bottom: 20px; gap: 12px; align-items: center; }
+  .page-head h1 { min-width: 0; }
+  .page-head h1[tabindex="-1"]:focus { outline: none; }
+  .page-head p { font-size: .875rem; }
+  .btn, .btn-link, .back, .filter, .nav-link {
+    min-height: 3rem; min-width: 3rem; line-height: 1.5;
+  }
+  .btn { font-size: 1rem; padding: 10px 16px; white-space: normal; }
+  .btn-link, .back { display: inline-flex; align-items: center; font-size: .875rem; }
+  .back { margin-bottom: 12px; }
+  .filter { padding: 10px 14px; font-size: .875rem; }
+  .filters { gap: 8px; margin-bottom: 20px; }
+  .nav-link { font-size: 1rem; padding: 12px; }
+  .icon { width: 22px; height: 22px; }
+  .sidebar.menu-open {
+    z-index: 30;
+    width: min(320px, calc(100vw - 48px));
+    max-height: 100dvh; overflow-y: auto;
+    padding: 24px 16px max(24px, env(safe-area-inset-bottom));
+  }
+  .brand-sub { font-size: .875rem; letter-spacing: 0; }
+  .badge { font-size: .8125rem; line-height: 1.5; white-space: normal; padding: 5px 8px; }
+  .card-head, .card-body, .list-item { padding: 16px; }
+  .card-head { gap: 8px; }
+  .card-foot { padding: 12px 16px; font-size: .875rem; }
+  .notice { padding: 16px; font-size: 1rem; margin-bottom: 20px; }
+  .notice p { font-size: .875rem; }
+  .list-text strong, .plan-step .list-text strong { font-size: 1rem; line-height: 1.5; }
+  .list-text small, .device-tile small { font-size: .875rem; line-height: 1.5; }
+  .list-item { gap: 12px; }
+  .list-dot { margin-top: 9px; }
+  .list-arrow { font-size: 22px; }
+  .stats { gap: 12px; margin-bottom: 20px; }
+  .stats .stat { padding: 16px !important; }
+  .stat span, .stat small { font-size: .875rem; line-height: 1.5; }
+  .stat strong, .stat .policy-value { font-size: 1.75rem; line-height: 1.4; margin-top: 4px; }
+  .mini-summary { flex-wrap: wrap; padding: 16px; }
+  .mini-summary span { font-size: 1rem; }
+  .followup-note, .incident-summary, .request-copy { font-size: 1rem; }
+  .request-target, .pending-features { font-size: .875rem; line-height: 1.5; }
+  .device-tile { min-height: 64px; padding: 16px; }
+  .device-tile strong { font-size: 1rem; }
+  .device-tile small { margin-left: 0; }
+  .device-tile .icon { flex-shrink: 0; }
+  .facts { grid-template-columns: 1fr; gap: 16px; }
+  .fact small { font-size: .875rem; }
+  .fact strong { font-size: 1rem; }
+  .timeline strong, .timeline p { font-size: 1rem; line-height: 1.5; }
+  .timeline small { font-size: .875rem; }
+  .field label, .field small, .form-note { font-size: .875rem; line-height: 1.5; }
+  .field input, .field textarea, .field select {
+    font-size: 1rem; line-height: 1.5; min-height: 3rem; padding: 12px;
+  }
+  .field textarea { min-height: 144px; }
+  .step-labels { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .step-labels span { font-size: .875rem; padding: 12px; }
+  .step-labels span:nth-child(2) { border-right: 0; border-radius: 0 12px 0 0; }
+  .step-labels span:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  .step-labels span:first-child { border-radius: 12px 0 0 0; }
+  .step-labels span:last-child { border-radius: 0 0 12px 0; }
+  .plan-step { flex-wrap: wrap; align-items: flex-start; }
+  .step-number { flex-shrink: 0; width: 28px; height: 28px; font-size: .875rem; }
+  .plan-step .list-text { flex: 1 1 140px; }
+  .plan-step .badge { max-width: 100%; }
+  .vehicle-title { font-size: 1.375rem; margin-bottom: 16px; }
+  .vehicle-location { margin: 20px 0; padding: 20px 0; }
+  .vehicle-location small, .vehicle-location span { display: block; font-size: .875rem; line-height: 1.5; }
+  .vehicle-location strong { font-size: 1.375rem; line-height: 1.4; margin: 4px 0 8px; }
+  .reply-buttons { grid-template-columns: 1fr; gap: 8px; margin: 20px 0; }
+  .empty { padding: 32px 16px; }
+  .empty strong { font-size: 1.125rem; }
+  .empty p, .placeholder p { font-size: .875rem; }
+  .placeholder strong { font-size: 1rem; }
+  .login-layout { width: 100%; margin: 0; border: 0; border-radius: 0; padding: 24px 16px; min-height: 100dvh; }
+  .login-intro h1 { font-size: 2rem; letter-spacing: -.04em; margin: 32px 0 24px; }
+  .login-choice { padding: 20px; margin-top: 24px; }
+  .login-choice h2 { font-size: 1.125rem; }
+  .login-choice .btn { min-height: 56px; }
+  .driver .mobile-nav {
+    left: 0; right: 0; bottom: 0; border-radius: 0;
+    padding: 4px env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+    border: 0; border-top: 1px solid var(--line);
+  }
+  .mobile-nav a { min-height: 64px; font-size: .875rem; padding: 12px; border-radius: 0; }
+  .mobile-nav a[aria-current=page] { border-radius: 12px; }
+  .toast { font-size: .875rem; line-height: 1.5; padding: 12px 16px; bottom: 20px; }
+  body:has(.driver) .toast { bottom: calc(84px + env(safe-area-inset-bottom)); }
+  dialog { width: calc(100vw - 32px); max-height: calc(100dvh - 32px); overflow-y: auto; }
+  dialog.drawer { height: 100dvh; max-height: 100dvh; width: 100%; border-radius: 0; }
+  .dialog-head { padding: 16px; gap: 12px; }
+  .dialog-head h2 { font-size: 1.125rem; min-width: 0; }
+  .dialog-head .btn { min-width: 3rem; min-height: 3rem; padding: 10px; flex-shrink: 0; }
+  .dialog-body { padding: 16px 16px max(16px, env(safe-area-inset-bottom)); }
+  .dialog-actions { flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+  .dialog-actions .btn { flex: 1 1 120px; }
+  .preview-bar { font-size: .75rem; line-height: 1.5; gap: 4px; padding: 8px 16px; }
+  .preview-controls { width: 100%; justify-content: space-between; gap: 8px; }
+  .preview-controls a, .preview-info summary { display: flex; align-items: center; min-height: 48px; min-width: 48px; }
+  .preview-info summary { display: list-item; align-content: center; }
+  .preview-controls label { font-size: .75rem; }
+  .preview-controls select { min-height: 48px; font-size: .875rem; max-width: 110px; padding: 8px; }
+  .preview-info-body { font-size: .875rem; }
+  .relationship-table, .relationship-table tbody { display: block; }
+  .relationship-table thead {
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+    clip-path: inset(50%); overflow: hidden; white-space: nowrap;
+  }
+  .relationship-table tr { display: grid; padding: 16px; border-bottom: 1px solid var(--line); gap: 12px; }
+  .relationship-table tr:last-child { border-bottom: 0; }
+  .relationship-table td { display: grid; gap: 4px; padding: 0; border: 0; white-space: normal; min-width: 0; font-size: 1rem; }
+  .relationship-table td::before { content: attr(data-label); font-size: .875rem; color: var(--muted); }
+  .relationship-table td strong { font-size: 1rem; }
+  .relationship-table td small { font-size: .875rem; line-height: 1.5; }
+  .relationship-table td > .badge { justify-self: start; }
+  .relationship-table .cell-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+  .relationship-table .cell-actions::before { width: 100%; }
+  .table-wrap { overflow: visible; }
+  .map-wrap { overflow-x: auto; overscroll-behavior-inline: contain; padding: 8px; }
+  .parking-map { width: 664px; height: 536px; max-height: none; min-height: 0; }
+  .parking-map text { font-size: 18px; }
+  .parking-map .map-label { font-size: 20px; }
+  .parking-map .car-label { font-size: 16px; }
+  .parking-map .gate-label { font-size: 14px; }
+  .parking-map .walk-label { transform: translate(28px, 24px); }
+  .map-hotspot text { font-size: 14px !important; }
+  .map-hotspot rect { height: 48px; }
+  .map-scroll-hint { display: block; padding: 8px 16px; font-size: .875rem; color: var(--muted); }
+  .map-legend { font-size: .875rem; gap: 8px 16px; }
+}

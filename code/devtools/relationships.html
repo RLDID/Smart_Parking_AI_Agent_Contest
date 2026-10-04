@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>가상 관계 관리 · 개발 시험</title>
+  <style>
+    :root{font-family:system-ui,sans-serif;color:#18233b;background:#f3f5fa}
+    body{max-width:1100px;margin:0 auto;padding:24px}
+    h1{margin:0 0 6px} p{line-height:1.5} .notice{color:#556073}
+    main{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:16px}
+    section{background:white;border:1px solid #dce2ec;border-radius:12px;padding:16px}
+    label{display:block;margin:10px 0 3px;font-size:14px} input,select,button{font:inherit}
+    input,select{box-sizing:border-box;width:100%;padding:8px;border:1px solid #b8c2d4;border-radius:6px}
+    button{margin-top:12px;padding:8px 12px;border:0;border-radius:6px;background:#3445b4;color:white;cursor:pointer}
+    button.secondary{background:#566171} pre{white-space:pre-wrap;word-break:break-word;max-height:420px;overflow:auto}
+    #status{min-height:2em;font-weight:600} #status.error{color:#a12424}
+  </style>
+</head>
+<body>
+  <h1>가상 고객·차량·사람 관계 관리</h1>
+  <p class="notice">로컬 개발용 시험 화면입니다. 실제 사람 식별이나 영상 분석 결과가 아니며, 관계를 변경해도 기존 알림이 자동으로 해결되지 않습니다.</p>
+  <button id="refresh" class="secondary" type="button">현재 관계 새로고침</button>
+  <p id="status" role="status" aria-live="polite"></p>
+  <main>
+    <section><h2>가상 고객</h2>
+      <form data-action="customer-create"><label>새 별칭<input name="display_alias" required maxlength="64"></label><label>등록 사유<input name="reason" required maxlength="200"></label><button>고객 등록</button></form>
+      <form data-action="customer-change"><label>고객 ID<input name="user_id" required></label><label>현재 버전<input name="expected_version" type="number" min="0" required></label><label>새 별칭<input name="display_alias" maxlength="64"></label><label>상태<select name="active"><option value="keep">유지</option><option value="false">비활성화</option></select></label><label>변경 사유<input name="reason" required maxlength="200"></label><button>고객 변경</button></form>
+    </section>
+    <section><h2>등록 차량</h2>
+      <form data-action="vehicle-create"><label>새 별칭<input name="display_alias" required maxlength="64"></label><label>등록 사유<input name="reason" required maxlength="200"></label><button>차량 등록</button></form>
+      <form data-action="vehicle-change"><label>차량 ID<input name="vehicle_id" required></label><label>현재 버전<input name="expected_version" type="number" min="0" required></label><label>새 별칭<input name="display_alias" maxlength="64"></label><label>상태<select name="active"><option value="keep">유지</option><option value="false">비활성화</option></select></label><label>변경 사유<input name="reason" required maxlength="200"></label><button>차량 변경</button></form>
+    </section>
+    <section><h2>차량 ↔ 고객</h2>
+      <form data-action="vehicle-user"><label>차량 ID<input name="vehicle_id" required></label><label>관계 버전<input name="expected_version" type="number" min="0" required></label><label>고객 ID (빈 칸은 해제)<input name="user_id"></label><label>변경 사유<input name="reason" required maxlength="200"></label><button>연결 / 해제</button></form>
+    </section>
+    <section><h2>관측 차량 ↔ 등록 차량</h2>
+      <form data-action="vehicle-object"><label>현재 run ID<input name="run_id" required></label><label>관측 차량 객체 ID<input name="object_id" required></label><label>관계 버전<input name="expected_version" type="number" min="0" required></label><label>등록 차량 ID<input name="registered_vehicle_id"></label><label>상태<select name="mapping_status"><option>uncertain</option><option>verified</option><option>unmapped</option></select></label><label>출처<select name="mapping_source"><option>reviewed</option><option>demo_config</option></select></label><label>검토 사유<input name="reason" required maxlength="200"></label><button>매핑 변경 / 해제</button></form>
+    </section>
+    <section><h2>관측 사람 ↔ 가상 고객</h2>
+      <form data-action="person-object"><label>현재 run ID<input name="run_id" required></label><label>관측 사람 객체 ID<input name="object_id" required></label><label>관계 버전<input name="expected_version" type="number" min="0" required></label><label>고객 ID<input name="user_id"></label><label>상태<select name="status"><option>proposed</option><option>uncertain</option><option>verified</option><option>unmapped</option></select></label><label>출처<select name="source"><option>demo_config</option><option>reviewed</option></select></label><label>검토 사유<input name="reason" required maxlength="200"></label><button>사람 관계 변경 / 해제</button></form>
+    </section>
+    <section><h2>현재 관계와 이력</h2><p class="notice">각 행의 버전을 변경 폼에 넣습니다. 객체 관계 버전은 아래 versions 목록에서 확인합니다.</p><pre id="snapshot"></pre></section>
+  </main>
+  <script src="/devtools/relationships.js" defer></script>
+</body>
+</html>

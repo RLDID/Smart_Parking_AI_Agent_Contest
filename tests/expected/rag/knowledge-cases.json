@@ -1,0 +1,11 @@
+{
+  "version": "rag-cases-v1",
+  "source": "synthetic test-only expectations; excluded from product input and index",
+  "cases": [
+    {"query": "통로 차단 이동 요청과 미응답", "topic": "parking_order", "expected_status": "matched", "expected_group": "group-aisle-obstruction-v1"},
+    {"query": "길막 이동", "topic": "parking_order", "expected_status": "matched", "expected_group": "group-aisle-obstruction-v1"},
+    {"query": "영업 종료 안내방송", "topic": "announcement", "expected_status": "matched", "expected_group": "group-closing-notice-v1"},
+    {"query": "차주 수락 응답 후속 확인", "topic": "user_guidance", "expected_status": "matched", "expected_group": "group-driver-guidance-v1"},
+    {"query": "우주선 연료세금", "topic": null, "expected_status": "no_match", "expected_group": null}
+  ]
+}

@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>합성 SIM-0 운영 시험 · 임시 개발 콘솔</title>
+  <style>
+    :root{font-family:system-ui,sans-serif;color:#172638;background:#f2f5f8}
+    *{box-sizing:border-box}body{max-width:1250px;margin:auto;padding:20px}
+    header{background:#162b3c;color:white;border-radius:12px;padding:20px;margin-bottom:16px}
+    header a{color:#c6eaff}.badge{display:inline-block;background:#ffdf9b;color:#3b2c00;border-radius:5px;padding:5px 9px;font-weight:700}
+    main{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:14px}
+    section{background:white;border:1px solid #d5e0e8;border-radius:10px;padding:16px;min-width:0}
+    h1{margin:10px 0}h2{font-size:19px;margin:0 0 10px}p,small{line-height:1.5}small{display:block;color:#536677}
+    label{display:block;margin-top:10px;font-size:14px}input,select,textarea,button{font:inherit}
+    input,select,textarea{width:100%;padding:8px;border:1px solid #9dafbf;border-radius:5px;margin-top:3px}
+    textarea{min-height:90px;resize:vertical}button{border:0;border-radius:5px;background:#176080;color:white;padding:9px 12px;cursor:pointer;margin:8px 6px 0 0}
+    button:disabled{opacity:.45;cursor:not-allowed}.quiet{background:#4f6575}.danger{background:#9a3535}
+    pre{white-space:pre-wrap;word-break:break-word;max-height:350px;overflow:auto;background:#f5f8fa;padding:9px;font-size:12px}
+    #status{min-height:2em;font-weight:650}#status[data-error="true"]{color:#a02121}
+    .notice{background:#fff5df;border-left:4px solid #d49b2b;padding:10px;margin:10px 0}
+  </style>
+</head>
+<body>
+  <header><span class="badge">임시 개발 콘솔 · 합성 SIM-0 시험</span>
+    <h1>운영 장면과 Agent 시험</h1>
+    <p>가상 관측·가상 이용자 반응·가상 장치만 다룹니다. 실제 CCTV·실설비·고객·음성 방송 결과가 아닙니다.</p>
+    <a href="/devtools">기존 관측 지도·메시지함 콘솔</a>
+  </header>
+  <p id="identity">세션 확인 중</p><p id="status" role="status" aria-live="polite"></p>
+  <main>
+    <section><h2>실행 회차</h2><small>새 fixture와 제어는 시험 운영자만 사용할 수 있습니다. 모의 실행이 기본입니다.</small>
+      <label>합성 장면<select id="fixture">
+        <option value="s1a-foundation-v1">S1-a 통로 차단</option>
+        <option value="s1b-blocked-v1">S1-b 출차 방해</option><option value="s1b-clear-v1">S1-b 비방해</option>
+        <option value="s1c-overlap-v1">S1-c 침범</option><option value="s1c-contained-v1">S1-c 면내</option>
+        <option value="s2-crossing-v1">S2 접근</option><option value="s2-offset-v1">S2 시차</option>
+        <option value="s2-occluded-v1">S2 가림</option><option value="s3-closing-v1">S3 영업 종료</option>
+        <option value="s3-gate-obstacle-v1">S3 게이트 장애물</option>
+      </select></label>
+      <label>재현 seed<input id="seed" type="number" value="1" min="0" max="2147483647"></label>
+      <label>step 차량 동작<select id="step-vehicle"><option value="">동작 없음</option><option value="request_vehicle_departure">obj-car-01 출차 요청</option><option value="request_vehicle_move">obj-car-02 이동 요청</option><option value="portal_entry">S3 가상 신규 입차 시도</option><option value="portal_exit">S3 가상 내부 차량 출차</option></select></label>
+      <label>step 관측 상태<select id="step-observation"><option value="">기본 관측</option><option value="normal">정상</option><option value="occluded_vehicle">차량 가림</option><option value="missing_vehicle">차량 관측 누락</option><option value="occluded_pedestrian">보행자 가림</option><option value="missing_pedestrian">보행자 관측 누락</option><option value="delayed">관측 지연</option><option value="unavailable">관측 불가</option></select></label>
+      <button id="create-run" data-operator>새 가상 run</button>
+      <div><button id="start" data-operator>시작</button><button id="pause" data-operator>일시정지</button>
+        <button id="step" data-operator>100ms 진행</button><button id="reset" data-operator class="quiet">reset</button>
+        <button id="replay" data-operator class="quiet">replay</button></div>
+      <button id="refresh" class="quiet" data-manager>현재 상태 새로고침</button>
+      <pre id="state">실행 없음</pre>
+    </section>
+    <section><h2>가상 이용자 반응</h2><small>웹 메시지함 접수·화면 수신·응답·실제 차량 이동은 서로 다른 결과입니다. 이 설정은 합성 시험 입력입니다.</small>
+      <label>반응<select id="reaction-mode"><option>manual</option><option>will_move</option><option>acknowledged</option>
+        <option>cannot_move</option><option>question</option><option>silent</option></select></label>
+      <label>응답 지연 ms<input id="response-delay" type="number" min="0" value="0"></label>
+      <label>이동 지연 ms<input id="movement-delay" type="number" min="0" value="0"></label>
+      <button id="save-reaction" data-operator>반응 설정</button><button id="read-reaction" class="quiet" data-manager>현재 반응 확인</button>
+      <pre id="reaction">설정 조회 전</pre>
+    </section>
+    <section><h2>Agent 업무 시험</h2><div class="notice">기본은 <strong>mock</strong>입니다. live 선택은 실제 유료 API 호출로 이어질 수 있습니다.</div>
+      <label>실행 모드<select id="agent-mode"><option value="mock">mock · 비용 없음</option><option value="live">live · 실제 API 비용 발생 가능</option></select></label>
+      <label>1회 처리 장면<select id="scenario"><option value="">자동 감시 · 시작용</option><option value="s1a">S1-a</option><option value="s1b">S1-b</option>
+        <option value="s1c">S1-c</option><option value="s2">S2</option><option value="s3">S3</option></select></label>
+      <label>연결할 S3 command ID (선택)<input id="agent-command-id"></label>
+      <button id="agent-start" data-manager>Agent 시작</button><button id="agent-process" data-manager>현재 사건 처리</button>
+      <button id="agent-stop" class="danger" data-manager>Agent 정지</button>
+      <button id="agent-refresh" class="quiet" data-manager>상태·작업 새로고침</button>
+      <pre id="agent-state">조회 전</pre><pre id="jobs">작업 조회 전</pre>
+    </section>
+    <section><h2>가상 장치 피드백</h2><small>경보의 화면/음향, 게이트 물리 상태, 방송의 접수/simulated/browser 재생을 구분해 표시합니다. 아래 브라우저 신호는 이 PC의 짧은 안내음 시험입니다. 음성 방송·시설 스피커 전달·사람의 인지와 다르며 서버의 browser_playback 값을 변경하지 않습니다.</small>
+      <button id="read-devices" class="quiet" data-manager>장치 상태 읽기</button><pre id="devices">조회 전</pre>
+      <button id="sound-enable" data-manager>브라우저 소리 활성화</button>
+      <button id="sound-test" data-manager>짧은 안내음 시험</button>
+      <button id="sound-mute" class="quiet" data-manager aria-pressed="false">음소거</button>
+      <button id="sound-stop" class="quiet" data-manager>신호 중단</button>
+      <label>확인할 안내 종류<select id="sound-kind"><option value="alarm">현재 활성 경보</option><option value="broadcast">선택 방송의 안내 신호</option></select></label>
+      <label>방송 operation ID (방송 선택 시)<input id="sound-broadcast-id" autocomplete="off"></label>
+      <button id="sound-current" data-manager>현재 상태 확인 후 신호 재생</button>
+      <p id="sound-status" role="status" aria-live="polite" data-phase="idle">소리 비활성 · 화면 안내를 확인하세요.</p>
+    </section>
+    <section><h2>합성 실패·S2 반응 시험</h2><small>아래 값은 운영 기준이 아니라 합성 실패 시험 입력입니다. 변경은 현재 run의 상태 버전을 확인하고 적용합니다.</small>
+      <label>장치 장애 채널<select id="fault-channel"><option value="visual">visual</option><option value="audio">audio</option><option value="simulated_playback">simulated_playback</option><option value="gate">gate</option></select></label>
+      <label>장애 상태<select id="fault-failed"><option value="true">장애 발생</option><option value="false">장애 해제</option></select></label>
+      <button id="save-fault" data-operator>장치 장애 설정</button>
+      <label>S2 운전자 반응<select id="s2-mode"><option value="brake_on_alarm">경보 뒤 제동</option><option value="no_response">무반응</option></select></label>
+      <label>S2 반응 지연 ms<input id="s2-delay" type="number" value="0" min="0" max="3000"></label>
+      <button id="save-s2" data-operator>S2 반응 설정</button>
+    </section>
+    <section><h2>S3 운영 명령</h2><small>명령 원문은 pending으로 접수됩니다. 계획을 읽고 명시적으로 확인한 뒤 단계별 결과를 다시 조회하세요.</small>
+      <label>운영 명령<textarea id="command-text" maxlength="2000" placeholder="예: 영업 종료를 안내하고 신규 입차를 제한해 주세요."></textarea></label>
+      <button id="command-create" data-manager>명령 접수</button>
+      <label>command ID<input id="command-id"></label>
+      <button id="command-preview" class="quiet" data-manager>명령·계획 미리보기</button>
+      <label>추가 확인 목적<select id="clarify-goal"><option value="closing">영업 종료</option><option value="zone_notice">구역 안내</option></select></label>
+      <label>구역 ID (구역 안내일 때)<input id="clarify-zone" placeholder="announcement-a"></label>
+      <button id="command-clarify" data-manager>명령 내용 확인</button>
+      <button id="command-confirm" data-manager disabled>미리 본 계획 확인</button>
+      <button id="command-cancel" class="danger" data-manager>명령 취소</button>
+      <pre id="command">명령 없음</pre><pre id="plan">계획 미리보기 전</pre>
+    </section>
+  </main>
+  <script src="/devtools/operations.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+{
+  "get_operating_policy": {
+    "additionalProperties": false,
+    "properties": {
+      "facility_id": {
+        "maxLength": 128,
+        "minLength": 1,
+        "title": "Facility Id",
+        "type": "string"
+      },
+      "zone_id": {
+        "anyOf": [
+          {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Zone Id"
+      },
+      "policy_version": {
+        "anyOf": [
+          {
+            "minimum": 1,
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Policy Version"
+      }
+    },
+    "required": [
+      "facility_id"
+    ],
+    "title": "PolicyQuery",
+    "type": "object"
+  },
+  "search_operating_knowledge": {
+    "additionalProperties": false,
+    "properties": {
+      "facility_id": {
+        "maxLength": 128,
+        "minLength": 1,
+        "title": "Facility Id",
+        "type": "string"
+      },
+      "run_id": {
+        "maxLength": 128,
+        "minLength": 1,
+        "title": "Run Id",
+        "type": "string"
+      },
+      "query": {
+        "maxLength": 500,
+        "minLength": 1,
+        "title": "Query",
+        "type": "string"
+      },
+      "topic": {
+        "anyOf": [
+          {
+            "enum": [
+              "parking_order",
+              "entry_exit",
+              "announcement",
+              "user_guidance"
+            ],
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Topic"
+      },
+      "zone_id": {
+        "anyOf": [
+          {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Zone Id"
+      }
+    },
+    "required": [
+      "facility_id",
+      "run_id",
+      "query"
+    ],
+    "title": "KnowledgeQuery",
+    "type": "object"
+  }
+}

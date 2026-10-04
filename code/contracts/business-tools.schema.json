@@ -1,0 +1,712 @@
+{
+  "create_or_update_incident": {
+    "$defs": {
+      "IncidentImpact": {
+        "additionalProperties": false,
+        "properties": {
+          "type": {
+            "enum": [
+              "aisle_obstruction",
+              "exit_blocked",
+              "bay_intrusion",
+              "approach_risk"
+            ],
+            "title": "Type",
+            "type": "string"
+          },
+          "object_id": {
+            "anyOf": [
+              {
+                "maxLength": 128,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "default": null,
+            "title": "Object Id"
+          },
+          "zone_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Zone Id",
+            "type": "string"
+          },
+          "condition_json": {
+            "additionalProperties": true,
+            "title": "Condition Json",
+            "type": "object"
+          }
+        },
+        "required": [
+          "type",
+          "zone_id"
+        ],
+        "title": "IncidentImpact",
+        "type": "object"
+      },
+      "KnowledgeEvidence": {
+        "additionalProperties": false,
+        "properties": {
+          "retrieval_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Retrieval Id",
+            "type": "string"
+          },
+          "reference_ids": {
+            "items": {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "title": "Reference Ids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "retrieval_id",
+          "reference_ids"
+        ],
+        "title": "KnowledgeEvidence",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "facility_id": {
+        "maxLength": 128,
+        "minLength": 1,
+        "title": "Facility Id",
+        "type": "string"
+      },
+      "run_id": {
+        "maxLength": 128,
+        "minLength": 1,
+        "title": "Run Id",
+        "type": "string"
+      },
+      "based_on_state_version": {
+        "minimum": 0,
+        "title": "Based On State Version",
+        "type": "integer"
+      },
+      "policy_version": {
+        "minimum": 1,
+        "title": "Policy Version",
+        "type": "integer"
+      },
+      "incident_id": {
+        "anyOf": [
+          {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Incident Id"
+      },
+      "command_id": {
+        "anyOf": [
+          {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Command Id"
+      },
+      "plan_id": {
+        "anyOf": [
+          {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Plan Id"
+      },
+      "knowledge_evidence": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/KnowledgeEvidence"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "primary_object_id": {
+        "maxLength": 128,
+        "minLength": 1,
+        "title": "Primary Object Id",
+        "type": "string"
+      },
+      "status": {
+        "enum": [
+          "candidate",
+          "active",
+          "monitoring",
+          "needs_review",
+          "escalated",
+          "resolved",
+          "closed_no_issue",
+          "closed_false_positive"
+        ],
+        "title": "Status",
+        "type": "string"
+      },
+      "impacts": {
+        "items": {
+          "$ref": "#/$defs/IncidentImpact"
+        },
+        "minItems": 1,
+        "title": "Impacts",
+        "type": "array"
+      },
+      "evidence_ids": {
+        "items": {
+          "maxLength": 128,
+          "minLength": 1,
+          "type": "string"
+        },
+        "maxItems": 64,
+        "minItems": 1,
+        "title": "Evidence Ids",
+        "type": "array"
+      },
+      "reason_summary": {
+        "maxLength": 1000,
+        "minLength": 1,
+        "title": "Reason Summary",
+        "type": "string"
+      },
+      "expected_resource_version": {
+        "anyOf": [
+          {
+            "minimum": 1,
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Expected Resource Version"
+      }
+    },
+    "required": [
+      "facility_id",
+      "run_id",
+      "based_on_state_version",
+      "policy_version",
+      "primary_object_id",
+      "status",
+      "impacts",
+      "evidence_ids",
+      "reason_summary"
+    ],
+    "title": "IncidentInput",
+    "type": "object"
+  },
+  "notify_vehicle_user": {
+    "$defs": {
+      "KnowledgeEvidence": {
+        "additionalProperties": false,
+        "properties": {
+          "retrieval_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Retrieval Id",
+            "type": "string"
+          },
+          "reference_ids": {
+            "items": {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "title": "Reference Ids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "retrieval_id",
+          "reference_ids"
+        ],
+        "title": "KnowledgeEvidence",
+        "type": "object"
+      },
+      "MoveTemplateArgs": {
+        "additionalProperties": false,
+        "properties": {
+          "zone_label": {
+            "maxLength": 100,
+            "minLength": 1,
+            "title": "Zone Label",
+            "type": "string"
+          }
+        },
+        "required": [
+          "zone_label"
+        ],
+        "title": "MoveTemplateArgs",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "facility_id": {
+        "maxLength": 128,
+        "minLength": 1,
+        "title": "Facility Id",
+        "type": "string"
+      },
+      "run_id": {
+        "maxLength": 128,
+        "minLength": 1,
+        "title": "Run Id",
+        "type": "string"
+      },
+      "based_on_state_version": {
+        "minimum": 0,
+        "title": "Based On State Version",
+        "type": "integer"
+      },
+      "policy_version": {
+        "minimum": 1,
+        "title": "Policy Version",
+        "type": "integer"
+      },
+      "incident_id": {
+        "anyOf": [
+          {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Incident Id"
+      },
+      "command_id": {
+        "anyOf": [
+          {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Command Id"
+      },
+      "plan_id": {
+        "anyOf": [
+          {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Plan Id"
+      },
+      "knowledge_evidence": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/KnowledgeEvidence"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "recipient_ref": {
+        "maxLength": 128,
+        "minLength": 1,
+        "title": "Recipient Ref",
+        "type": "string"
+      },
+      "purpose": {
+        "const": "move_request",
+        "default": "move_request",
+        "title": "Purpose",
+        "type": "string"
+      },
+      "template_id": {
+        "const": "move_request_v1",
+        "default": "move_request_v1",
+        "title": "Template Id",
+        "type": "string"
+      },
+      "template_args": {
+        "$ref": "#/$defs/MoveTemplateArgs"
+      },
+      "contact_sequence": {
+        "minimum": 1,
+        "title": "Contact Sequence",
+        "type": "integer"
+      },
+      "expected_resource_version": {
+        "minimum": 1,
+        "title": "Expected Resource Version",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "facility_id",
+      "run_id",
+      "based_on_state_version",
+      "policy_version",
+      "recipient_ref",
+      "template_args",
+      "contact_sequence",
+      "expected_resource_version"
+    ],
+    "title": "NotifyVehicle",
+    "type": "object"
+  },
+  "report_to_owner": {
+    "$defs": {
+      "KnowledgeEvidence": {
+        "additionalProperties": false,
+        "properties": {
+          "retrieval_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Retrieval Id",
+            "type": "string"
+          },
+          "reference_ids": {
+            "items": {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "title": "Reference Ids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "retrieval_id",
+          "reference_ids"
+        ],
+        "title": "KnowledgeEvidence",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "facility_id": {
+        "maxLength": 128,
+        "minLength": 1,
+        "title": "Facility Id",
+        "type": "string"
+      },
+      "run_id": {
+        "maxLength": 128,
+        "minLength": 1,
+        "title": "Run Id",
+        "type": "string"
+      },
+      "based_on_state_version": {
+        "minimum": 0,
+        "title": "Based On State Version",
+        "type": "integer"
+      },
+      "policy_version": {
+        "minimum": 1,
+        "title": "Policy Version",
+        "type": "integer"
+      },
+      "incident_id": {
+        "anyOf": [
+          {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Incident Id"
+      },
+      "command_id": {
+        "anyOf": [
+          {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Command Id"
+      },
+      "plan_id": {
+        "anyOf": [
+          {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Plan Id"
+      },
+      "knowledge_evidence": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/KnowledgeEvidence"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "reason_code": {
+        "maxLength": 128,
+        "minLength": 1,
+        "title": "Reason Code",
+        "type": "string"
+      },
+      "summary": {
+        "maxLength": 1000,
+        "minLength": 1,
+        "title": "Summary",
+        "type": "string"
+      },
+      "evidence_ids": {
+        "items": {
+          "maxLength": 128,
+          "minLength": 1,
+          "type": "string"
+        },
+        "title": "Evidence Ids",
+        "type": "array"
+      }
+    },
+    "required": [
+      "facility_id",
+      "run_id",
+      "based_on_state_version",
+      "policy_version",
+      "reason_code",
+      "summary"
+    ],
+    "title": "ReportOwner",
+    "type": "object"
+  },
+  "request_followup": {
+    "$defs": {
+      "KnowledgeEvidence": {
+        "additionalProperties": false,
+        "properties": {
+          "retrieval_id": {
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Retrieval Id",
+            "type": "string"
+          },
+          "reference_ids": {
+            "items": {
+              "maxLength": 128,
+              "minLength": 1,
+              "type": "string"
+            },
+            "maxItems": 100,
+            "minItems": 1,
+            "title": "Reference Ids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "retrieval_id",
+          "reference_ids"
+        ],
+        "title": "KnowledgeEvidence",
+        "type": "object"
+      }
+    },
+    "additionalProperties": false,
+    "properties": {
+      "facility_id": {
+        "maxLength": 128,
+        "minLength": 1,
+        "title": "Facility Id",
+        "type": "string"
+      },
+      "run_id": {
+        "maxLength": 128,
+        "minLength": 1,
+        "title": "Run Id",
+        "type": "string"
+      },
+      "based_on_state_version": {
+        "minimum": 0,
+        "title": "Based On State Version",
+        "type": "integer"
+      },
+      "policy_version": {
+        "minimum": 1,
+        "title": "Policy Version",
+        "type": "integer"
+      },
+      "incident_id": {
+        "anyOf": [
+          {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Incident Id"
+      },
+      "command_id": {
+        "anyOf": [
+          {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Command Id"
+      },
+      "plan_id": {
+        "anyOf": [
+          {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Plan Id"
+      },
+      "knowledge_evidence": {
+        "anyOf": [
+          {
+            "$ref": "#/$defs/KnowledgeEvidence"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null
+      },
+      "clock": {
+        "enum": [
+          "sim",
+          "wall"
+        ],
+        "title": "Clock",
+        "type": "string"
+      },
+      "due_sim_time_ms": {
+        "anyOf": [
+          {
+            "minimum": 0,
+            "type": "integer"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Due Sim Time Ms"
+      },
+      "due_at": {
+        "anyOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "null"
+          }
+        ],
+        "default": null,
+        "title": "Due At"
+      },
+      "condition": {
+        "enum": [
+          "spatial_recheck",
+          "exit_recheck",
+          "bay_recheck",
+          "approach_recheck",
+          "device_recheck",
+          "command_recheck",
+          "response_timeout"
+        ],
+        "title": "Condition",
+        "type": "string"
+      },
+      "max_attempts": {
+        "maximum": 3,
+        "minimum": 1,
+        "title": "Max Attempts",
+        "type": "integer"
+      }
+    },
+    "required": [
+      "facility_id",
+      "run_id",
+      "based_on_state_version",
+      "policy_version",
+      "clock",
+      "condition",
+      "max_attempts"
+    ],
+    "title": "FollowupInput",
+    "type": "object"
+  }
+}

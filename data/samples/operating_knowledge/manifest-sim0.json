@@ -1,0 +1,164 @@
+{
+  "schema_version": "0.1-draft",
+  "facility_id": "fac-demo-01",
+  "knowledge_release_id": "knowledge-sim0-v3",
+  "index_version": "keyword-v1",
+  "mode": "synthetic_demo",
+  "documents": [
+    {
+      "document_id": "manual-parking-order",
+      "document_version": "v2",
+      "facility_id": "fac-demo-01",
+      "title": "가상 통로 질서 매뉴얼",
+      "source_ref": "synthetic-sim0-manual-parking-order-v2",
+      "file": "parking-operations-sim0.manual.json",
+      "content_digest": "sha256:08ebd15684cedab0c08628c3731be4afe42abf8fcc4de3e623384d6f55721fe9",
+      "approval_status": "approved",
+      "allowed_roles": [
+        "owner",
+        "test_operator"
+      ],
+      "effective_at": "2026-10-01T00:00:00Z",
+      "retired_at": null,
+      "reviewed_conflict": false
+    },
+    {
+      "document_id": "manual-entry-announcement",
+      "document_version": "v2",
+      "facility_id": "fac-demo-01",
+      "title": "가상 입출차 및 방송 매뉴얼",
+      "source_ref": "synthetic-sim0-manual-entry-announcement-v2",
+      "file": "entry-announcement-sim0.manual.json",
+      "content_digest": "sha256:ce1bc3b5c4813170615a3d9289b543b5c0f57930f1702dc55c736f705d12bb10",
+      "approval_status": "approved",
+      "allowed_roles": [
+        "owner",
+        "test_operator"
+      ],
+      "effective_at": "2026-10-01T00:00:00Z",
+      "retired_at": null,
+      "reviewed_conflict": false
+    },
+    {
+      "document_id": "manual-user-guidance",
+      "document_version": "v1",
+      "facility_id": "fac-demo-01",
+      "title": "가상 차주 이용 안내",
+      "source_ref": "synthetic-user-guidance-v1",
+      "file": "user-guidance.manual.json",
+      "content_digest": "sha256:8778345e82be6db7913b8a7ebe2ab10ee55fe49a9a6cd23ec04efc220259d511",
+      "approval_status": "approved",
+      "allowed_roles": [
+        "owner",
+        "test_operator",
+        "driver"
+      ],
+      "effective_at": "2026-09-30T00:00:00Z",
+      "retired_at": null,
+      "reviewed_conflict": false
+    }
+  ],
+  "policy": {
+    "facility_id": "fac-demo-01",
+    "policy_version": 3,
+    "knowledge_release_id": "knowledge-sim0-v3",
+    "effective_at": "2026-10-01T00:00:00Z",
+    "retired_at": null,
+    "mode": "synthetic_demo",
+    "knowledge_requirements": [
+      {
+        "tool_name": "notify_vehicle_user",
+        "purpose": "move_request",
+        "required_topics": [
+          "parking_order"
+        ]
+      },
+      {
+        "tool_name": "play_announcement",
+        "purpose": "closing_notice",
+        "required_topics": [
+          "entry_exit",
+          "announcement"
+        ]
+      },
+      {
+        "tool_name": "report_to_owner",
+        "purpose": "incident_report",
+        "required_topics": []
+      },
+      {
+        "tool_name": "create_or_update_incident",
+        "purpose": "incident_record",
+        "required_topics": []
+      },
+      {
+        "tool_name": "request_followup",
+        "purpose": "spatial_recheck",
+        "required_topics": []
+      },
+      {
+        "tool_name": "request_followup",
+        "purpose": "response_timeout",
+        "required_topics": []
+      },
+      {
+        "tool_name": "set_entry_policy",
+        "purpose": "closing_entry",
+        "required_topics": [
+          "entry_exit",
+          "announcement"
+        ]
+      },
+      {
+        "tool_name": "request_followup",
+        "purpose": "exit_recheck",
+        "required_topics": []
+      },
+      {
+        "tool_name": "request_followup",
+        "purpose": "bay_recheck",
+        "required_topics": []
+      },
+      {
+        "tool_name": "request_followup",
+        "purpose": "approach_recheck",
+        "required_topics": []
+      },
+      {
+        "tool_name": "request_followup",
+        "purpose": "device_recheck",
+        "required_topics": []
+      },
+      {
+        "tool_name": "request_followup",
+        "purpose": "command_recheck",
+        "required_topics": []
+      },
+      {
+        "tool_name": "play_announcement",
+        "purpose": "zone_notice",
+        "required_topics": [
+          "announcement"
+        ]
+      }
+    ],
+    "execution_rules": {
+      "allowed_tools": [
+        "create_or_update_incident",
+        "notify_vehicle_user",
+        "report_to_owner",
+        "request_followup",
+        "play_announcement",
+        "set_entry_policy"
+      ],
+      "delivery_max_attempts": 2,
+      "contact_max_sequence": 2,
+      "contact_interval_wall_ms": 60000,
+      "response_timeout_wall_ms": 60000,
+      "overall_timeout_wall_ms": 180000,
+      "spatial_followup_sim_ms": 2000,
+      "followup_max_attempts": 3,
+      "delivery_timeout_wall_ms": 2000
+    }
+  }
+}
