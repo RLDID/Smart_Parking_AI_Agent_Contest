@@ -32,6 +32,8 @@ flowchart LR
 
 Windows, 네이티브 Python 3.12, Node.js 24 계열과 npm 기준입니다. API 키 없이 모의 판단과 실제 로컬 서버 연결을 사용할 수 있습니다.
 
+실제 AI를 사용하려면 [OpenAI](https://platform.openai.com/api-keys)와 [Google AI Studio](https://aistudio.google.com/apikey)에서 API 키를 발급받아 Windows 사용자 환경변수 `OPENAI_API_KEY`, `GEMINI_API_KEY`에 각각 등록합니다. 사용할 제공자의 키만 준비하면 되며, 등록 후 새 터미널에서 백엔드를 실행합니다. 실제 모델 실행 명령은 [실행 안내](docs/실행안내.md#실제-모델-선택)를 따릅니다.
+
 저장소 루트 PowerShell:
 
 ```powershell
@@ -74,4 +76,4 @@ npm run dev:integration
 
 ## AI 활용과 출처
 
-외부 LLM API를 사용하며 자체 모델 학습 성과를 주장하지 않습니다. 개발·문서 준비에 Codex/ChatGPT를 활용했습니다. 사용 기술·동봉 폰트의 고지는 [외부 기술·자산 고지](THIRD_PARTY_NOTICES.md)를 따릅니다.
+업무 판단에 OpenAI·Gemini API를, 개발·문서 작성에 Codex/ChatGPT를 활용했습니다. 사용 기술·동봉 폰트의 고지는 [외부 기술·자산 고지](THIRD_PARTY_NOTICES.md)를 따릅니다.
