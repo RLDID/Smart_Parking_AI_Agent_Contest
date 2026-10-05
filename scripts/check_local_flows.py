@@ -584,7 +584,7 @@ def main():
         print(f"{result['case']}: {result['status']}" + (f" ({result['failure']['message']})" if "failure" in result else ""), flush=True)
     report = {"schema_version": 1, "declared_base_commit": "d9480c6b00397e4f1346a0942e76a527ec62ed84",
         "provenance": {"start": started_provenance, "end": provenance()},
-        "conditions": {"test_plan": "docs/구현범위_검증결과.md",
+        "conditions": {"test_plan": None,
             "seed": 42, "candidate_ticks": 60, "post_response_milestone_ticks": 25,
             "post_response_max_ticks": 400, "tick_ms": 100, "observation_ms": 200,
             "wall_start": "2026-10-04T00:00:00Z", "mode": "mock/local_web_inbox/synthetic",
