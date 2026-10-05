@@ -88,11 +88,12 @@ function OwnMap({ map, vehicle, compatible }: { map: OwnParkingMap; vehicle?: Ve
   const scale = 16; const width = (x1 - x0) * scale; const height = (y1 - y0) * scale;
   const px = (x: number) => (x - x0) * scale; const py = (y: number) => (y1 - y) * scale;
   const position = compatible ? vehicle?.position : null;
-  return <div className="map-wrap" tabIndex={0} aria-label="본인 차량 정적 주차 지도"><svg className="parking-map" viewBox={`-12 -12 ${width + 24} ${height + 24}`} role="img" aria-label="정적 지도와 확인된 본인 차량 관측">
+  return <><div className="map-wrap live-map-wrap" tabIndex={0} aria-label="본인 차량 정적 주차 지도"><svg className="parking-map" viewBox={`-12 -12 ${width + 24} ${height + 24}`} role="img" aria-label="정적 지도와 확인된 본인 차량 관측">
     <rect width={width} height={height} fill="#edf5fa" stroke="#c2d6e2"/>
-    {map.zones.map(zone => <g key={zone.zone_id}><polygon points={zone.polygon.map(p => `${px(p.x)},${py(p.y)}`).join(' ')} fill={zone.type === 'parking_bay' ? '#fafdff' : zone.type === 'pedestrian' ? '#d6dfcc' : '#e0edf5'} stroke={compatible && vehicle?.observed_bay_id === zone.zone_id ? '#36788f' : '#b7cdd9'} strokeWidth={compatible && vehicle?.observed_bay_id === zone.zone_id ? 3 : 1}/>{zone.type === 'parking_bay' && zone.polygon.length > 0 && <text x={px(zone.polygon.reduce((sum, p) => sum + p.x, 0) / zone.polygon.length)} y={py(zone.polygon.reduce((sum, p) => sum + p.y, 0) / zone.polygon.length)} textAnchor="middle" fontSize="13">{zone.zone_id}</text>}</g>)}
+    {/* 방송 범위는 도로가 아니므로 지면을 덮는 도형으로 표시하지 않는다. */}
+    {map.zones.filter(zone => zone.type !== 'announcement').map(zone => <g key={zone.zone_id}><polygon data-zone-type={zone.type} points={zone.polygon.map(p => `${px(p.x)},${py(p.y)}`).join(' ')} fill={zone.type === 'parking_bay' ? '#ffffff' : zone.type === 'pedestrian' || zone.type === 'walkway' ? '#d6dfcc' : ['aisle', 'entrance', 'exit'].includes(zone.type) ? '#9caebb' : '#e0edf5'} stroke={compatible && vehicle?.observed_bay_id === zone.zone_id ? '#36788f' : '#708695'} strokeWidth={compatible && vehicle?.observed_bay_id === zone.zone_id ? 3 : 1}/>{zone.type === 'parking_bay' && zone.zone_id.length <= 6 && zone.polygon.length > 0 && <text x={px(zone.polygon.reduce((sum, p) => sum + p.x, 0) / zone.polygon.length)} y={py(zone.polygon.reduce((sum, p) => sum + p.y, 0) / zone.polygon.length)} textAnchor="middle" fontSize="13">{zone.zone_id}</text>}</g>)}
     {position && <g><circle cx={px(position.x)} cy={py(position.y)} r="8" fill="#36788f"/><text x={px(position.x)} y={py(position.y) - 16} textAnchor="middle" fontSize="14">내 차량</text></g>}
-  </svg></div>;
+  </svg></div><p className="map-scroll-hint">지도를 좌우로 밀어 확인하세요.</p></>;
 }
 
 function useHistory<T>(kind: HistoryKind, id: string, runId?: string) {

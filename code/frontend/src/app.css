@@ -23,3 +23,17 @@ main:focus { outline: none; }
   .login-choice form > .btn { min-height: 48px; font-size: 1rem; }
   .map-selection .facts { grid-template-columns: 1fr; }
 }
+
+/* Connected maps use the full content width; keep small screens scrollable. */
+.grid.two.live-monitor-grid, .grid.equal.live-vehicle-grid { grid-template-columns: minmax(0, 1fr); }
+.live-monitor-grid > .stack { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+.live-map-wrap { overflow-x: auto; overscroll-behavior-inline: contain; }
+.live-map-wrap .parking-map { display: block; width: 100%; max-width: 800px; min-width: 560px; height: auto; max-height: none; min-height: 0; margin: 0 auto; }
+.live-map-wrap .parking-map text { fill: #273e4c; }
+.map-legend { flex-wrap: wrap; }
+.map-legend .map-road { background: #9caebb; }
+.map-legend .map-walkway { background: #d6dfcc; border: 1px solid #708695; }
+@media (max-width: 700px) {
+  .live-monitor-grid > .stack { grid-template-columns: minmax(0, 1fr); }
+  .live-map-wrap .parking-map { min-width: 664px; }
+}
