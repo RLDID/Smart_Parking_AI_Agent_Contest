@@ -37,3 +37,7 @@ main:focus { outline: none; }
   .live-monitor-grid > .stack { grid-template-columns: minmax(0, 1fr); }
   .live-map-wrap .parking-map { min-width: 664px; }
 }
+
+.alarm-audio { display: flex; align-items: center; flex-wrap: wrap; gap: 8px 14px; margin-bottom: 20px; }
+.alarm-audio span { font-size: 13px; }
+.alarm-audio small { color: var(--muted); }
